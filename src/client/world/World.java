@@ -25,7 +25,7 @@ public class World {
 		entities = new EntityManager();
 		entities.add(new Player(xPlayerSpawn*Tile.TILE_SIZE, yPlayerSpawn*Tile.TILE_SIZE));
 		for(int i=0; i<numGhosts; i++)
-			entities.add(new Ghost(xGhostSpawn[i]*Tile.TILE_SIZE, yGhostSpawn[i]*Tile.TILE_SIZE,i+1));
+			entities.add(new Ghost(xGhostSpawn[i]*Tile.TILE_SIZE, yGhostSpawn[i]*Tile.TILE_SIZE,i));
 	}
 	
 	
