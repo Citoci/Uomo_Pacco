@@ -32,13 +32,12 @@ public class World {
 	
 	
 	public boolean checkWin() {
-//		boolean win = true;
-//		for(int x=0; x<width; x++)
-//			for(int y=0; y<height; y++)
-//				if(!visited[x][y])
-//					win = false;
-//		return win;
-		return false;
+		boolean win = true;
+		for(int x=0; x<width; x++)
+			for(int y=0; y<height; y++)
+				if(!visited[x][y])
+					win = false;
+		return win;
 	}
 	
 	public void tick() {

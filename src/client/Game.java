@@ -48,7 +48,7 @@ public class Game implements Runnable {
 
 		world = new World(worldPath);	
 		
-		display = new Display(title, world.getWidth()*Tile.TILE_SIZE, world.getHeight()*Tile.TILE_SIZE+28);
+		display = new Display(title, world.getWidth()*Tile.TILE_SIZE, world.getHeight()*Tile.TILE_SIZE);
 		
 		keyManager = new KeyManager();
 		display.addKeyListener(keyManager);
