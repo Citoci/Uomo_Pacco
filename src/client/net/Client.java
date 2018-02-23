@@ -29,16 +29,17 @@ public class Client {
 	}
 
 	public void tick() {
-//		try {
-//			out.println(game.getKeyManager().up + " " + game.getKeyManager().down + " " + game.getKeyManager().left
-//					+ " " + game.getKeyManager().right + " ");
-//			out.flush();
-//			String s = in.readLine();
-//			game.x = (int) Float.parseFloat(s.split(" ")[0]);
-//			game.y = (int) Float.parseFloat(s.split(" ")[1]);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		// try {
+		// out.println(game.getKeyManager().up + " " + game.getKeyManager().down + " " +
+		// game.getKeyManager().left
+		// + " " + game.getKeyManager().right + " ");
+		// out.flush();
+		// String s = in.readLine();
+		// game.x = (int) Float.parseFloat(s.split(" ")[0]);
+		// game.y = (int) Float.parseFloat(s.split(" ")[1]);
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// }
 	}
 
 	public void close() {
