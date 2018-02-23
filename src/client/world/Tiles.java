@@ -15,7 +15,7 @@ public class Tiles {
 	}
 	
 	public static class CoinTile extends Tile {
-		public CoinTile(int id) { super(id, Assets.coin); }		
+		public CoinTile(int id) { super(id, Assets.ball); }		
 	}
 	
 	public static  Tile[] allTiles;

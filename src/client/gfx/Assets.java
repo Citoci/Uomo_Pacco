@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 	
-	public static BufferedImage pacman, wall, coin, heart;
+	public static BufferedImage pacman, wall, ball, heart;
 
 	public static BufferedImage redGhost_sheet, blueGhost_sheet, yellowGhost_sheet, pinkGhost_sheet;
 	public static BufferedImage[] redGhost_UP, redGhost_DW, redGhost_LF, redGhost_RG,
@@ -16,7 +16,7 @@ public class Assets {
 	public static void init() {		
 		pacman = ImageUtils.loadImage("pacman.png");
  		wall = ImageUtils.loadImage("wall.png");	
-		coin = ImageUtils.loadImage("coin.png");
+		ball = ImageUtils.loadImage("coin.png");
 		heart =  ImageUtils.loadImage("heart.png");
 		
 		//Carico il fantasmino rosso
