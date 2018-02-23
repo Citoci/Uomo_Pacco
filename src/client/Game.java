@@ -119,9 +119,4 @@ public class Game implements Runnable {
 	
 	public World getWorld() { return world; }
 	
-	public static void main(String[] args) {
-		game = new Game("Pacman");
-		game.start();
-	}
-	
 }
