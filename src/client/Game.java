@@ -35,7 +35,7 @@ public class Game implements Runnable {
 	
 	// World
 	private World world;
-	private final String worldPath = "res/worlds/world3.txt";
+	private final String worldPath = "res/worlds/world2.txt";
 	
 	
 	public Game(String title) {

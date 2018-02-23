@@ -1,7 +1,5 @@
 package client.world;
 
-import java.awt.image.BufferedImage;
-
 import client.gfx.Assets;
 
 public class Tiles {
