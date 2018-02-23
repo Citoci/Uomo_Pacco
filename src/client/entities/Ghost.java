@@ -9,9 +9,6 @@ import client.gfx.Animation;
 
 public class Ghost extends Entity {
 
-	// Animations
-	private Animation animUp, animDw, animLf, animRg;
-
 	public Ghost(int xPos, int yPos, int c) {
 		super(xPos, yPos);
 

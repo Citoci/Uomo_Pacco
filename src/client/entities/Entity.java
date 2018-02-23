@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import client.Game;
+import client.gfx.Animation;
 import client.world.Tile;
 
 public abstract class Entity {
@@ -12,8 +13,10 @@ public abstract class Entity {
 
 	protected int xPos, yPos, width, height, health, speed, xMove, yMove;
 	protected final int xSpawn, ySpawn;
-
 	protected boolean xBlock, yBlock;
+	
+	// Animations
+	protected Animation animUp, animDw, animLf, animRg;
 
 	public Entity(int xPos, int yPos) {
 		this.xPos = xPos;

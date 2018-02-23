@@ -25,5 +25,9 @@ public class ImageUtils {
 	public static BufferedImage crop(BufferedImage image, int x, int y, int width, int height) {
 		return image.getSubimage(x, y, width, height);
 	}
+	
+	public static BufferedImage rotate(BufferedImage imge) {	
+		return null;
+	}
 
 }
