@@ -1,19 +1,28 @@
 package client.entities;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JOptionPane;
 
 import client.Game;
+import client.gfx.Animation;
 import client.gfx.Assets;
 
 public class Player extends Entity {
+	
+	BufferedImage stopPos;
 
 	public Player(int xPos, int yPos) {
 		super(xPos, yPos);
 
 		// Animations
-
+		animLf = new Animation(Assets.pacman[0]);
+		animRg = new Animation(Assets.pacman[1]);
+		animUp = new Animation(Assets.pacman[2]);
+		animDw = new Animation(Assets.pacman[3]);
+		
+		stopPos = Assets.pacman[0][2];
 	}
 
 	private void getInput() {
@@ -41,17 +50,42 @@ public class Player extends Entity {
 
 	@Override
 	public void tick() {
+		//Animation
+		animUp.tick();
+		animDw.tick();
+		animLf.tick();
+		animRg.tick();
+
+		
 		getInput();
 		move();
 	}
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.pacman, xPos, yPos, DEFAULT_SIZE, DEFAULT_SIZE, null);
+		//g.drawImage(getCurrentAnimationFrame(), xPos, yPos, DEFAULT_SIZE, DEFAULT_SIZE, null);
 		for (int i = 0, k = 0; i < health; i++, k += DEFAULT_SIZE + 5) {
 			g.drawImage(Assets.heart, k, 0, DEFAULT_SIZE + 5, DEFAULT_SIZE, null);
 		}
 
+		
+		if((Game.game.getKeyManager().right) || (Game.game.getKeyManager().left)|| (Game.game.getKeyManager().down) || (Game.game.getKeyManager().up)) {
+			g.drawImage(getCurrentAnimationFrame(), xPos, yPos, DEFAULT_SIZE, DEFAULT_SIZE, null);
+		}
+		else {
+			g.drawImage(stopPos,  xPos, yPos, DEFAULT_SIZE, DEFAULT_SIZE, null);
+		}
+	}
+	
+	private BufferedImage getCurrentAnimationFrame() {
+		if (xMove < 0 )
+			return animLf.getCurrentFrame();
+		else if (xMove > 0 )
+			return animRg.getCurrentFrame();
+		else if (yMove < 0)
+			return animUp.getCurrentFrame();
+		else
+			return animDw.getCurrentFrame();
 	}
 
 }

@@ -18,7 +18,7 @@ public class Game implements Runnable {
 	// Config
 	private boolean running;
 	public final int fps = 60;
-	public final double zoom = 1.0;
+	public final double zoom = 0.5;
 
 	// Thread
 	private Thread gameThread;
