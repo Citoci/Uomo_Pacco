@@ -25,14 +25,12 @@ public class EntityManager {
 	private void resetPos() {
 		for(Player p: players)
 			p.resetPos();
-//		for(Ghost g: ghosts)
-//			g.resetPos();
 	}
 
-	public void tick(boolean[][] visited) {
+	public void tick(int[][] map) {
 		for(Player p: players) {
 			p.tick();
-			visited[(p.getxPos()+p.width/2)/Tile.TILE_SIZE][(p.getyPos()+p.height/2)/Tile.TILE_SIZE] = true;
+			map[(p.getxPos()+p.width/2)/Tile.TILE_SIZE][(p.getyPos()+p.height/2)/Tile.TILE_SIZE] = 2;
 
 			for(Ghost g: ghosts)
 				if(p.getCollisionBounds().intersects(g.getCollisionBounds())) {

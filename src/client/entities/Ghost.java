@@ -50,12 +50,11 @@ public class Ghost extends Entity{
 		animDw.tick();
 		animLf.tick();
 		animRg.tick();
-		//
 		
 		now = System.nanoTime();
 		delta += (now-last);
 		last = now;
-		if(delta>=2e9 || (!XBlock && !YBlock)) {
+		if(delta>=2e9 || (!yBlock && !xBlock)) {
 			if((new Random()).nextInt(2)==0) 
 				xMove=speed;
 			else 
@@ -77,47 +76,43 @@ public class Ghost extends Entity{
 	}
 	
 	private BufferedImage getCurrentAnimationFrame() {
-		if(xMove<0 && YBlock) {
+		if(xMove<0 && xBlock) 
 			return animLf.getCurrentFrame();
-		}
-		else if(xMove>0 && YBlock) {
+		else if(xMove>0 && xBlock) 
 			return animRg.getCurrentFrame();
-		}
-		else if(yMove<0 && XBlock) {
+		else if(yMove<0 && yBlock) 
 			return animUp.getCurrentFrame();
-		}
-		else {
+		else
 			return animDw.getCurrentFrame();
-		}
 	}
 
 	//Animations set colors
 	public void setRed() {
-		animUp = new Animation(200, Assets.ghost_REDup);
-		animDw = new Animation(200, Assets.ghost_REDdw);
-		animLf = new Animation(200, Assets.ghost_REDlf);
-		animRg = new Animation(200, Assets.ghost_REDrg);
+		animUp = new Animation(Assets.redGhost_UP);
+		animDw = new Animation(Assets.redGhost_DW);
+		animLf = new Animation(Assets.redGhost_LF);
+		animRg = new Animation(Assets.redGhost_RG);
 	}
 	
 	public void setBlu() {
-		animUp = new Animation(200, Assets.ghost_BLUup);
-		animDw = new Animation(200, Assets.ghost_BLUdw);
-		animLf = new Animation(200, Assets.ghost_BLUlf);
-		animRg = new Animation(200, Assets.ghost_BLUrg);
+		animUp = new Animation(Assets.blueGhost_UP);
+		animDw = new Animation(Assets.blueGhost_DW);
+		animLf = new Animation(Assets.blueGhost_LF);
+		animRg = new Animation(Assets.blueGhost_RG);
 	}
 	
 	public void setYellow() {
-		animUp = new Animation(200, Assets.ghost_YELup);
-		animDw = new Animation(200, Assets.ghost_YELdw);
-		animLf = new Animation(200, Assets.ghost_YELlf);
-		animRg = new Animation(200, Assets.ghost_YELrg);
+		animUp = new Animation(Assets.yellowGhost_UP);
+		animDw = new Animation(Assets.yellowGhost_DW);
+		animLf = new Animation(Assets.yellowGhost_LF);
+		animRg = new Animation(Assets.yellowGhost_RG);
 	}
 	
 	public void setPink() {
-		animUp = new Animation(200, Assets.ghost_PINup);
-		animDw = new Animation(200, Assets.ghost_PINdw);
-		animLf = new Animation(200, Assets.ghost_PINlf);
-		animRg = new Animation(200, Assets.ghost_PINrg);
+		animUp = new Animation(Assets.pinkGhost_UP);
+		animDw = new Animation(Assets.pinkGhost_DW);
+		animLf = new Animation(Assets.pinkGhost_LF);
+		animRg = new Animation(Assets.pinkGhost_RG);
 	}
 
 }

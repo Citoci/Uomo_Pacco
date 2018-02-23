@@ -15,41 +15,33 @@ public abstract class Entity {
 	protected int xPos, yPos, width, height, health, speed, xMove, yMove;
 	protected final int xSpawn, ySpawn;
 	
-	protected boolean YBlock, XBlock;//
+	protected boolean xBlock, yBlock;//
 
 	public Entity(int xPos, int yPos) {
 		this.xPos = xPos;
 		this.yPos = yPos;
+		xSpawn = xPos;
+		ySpawn = yPos;
 		width = DEFAULT_SIZE;
 		height = DEFAULT_SIZE;
 		health = DEFAULT_HEALTH;
 		speed = DEFAULT_SPEED;
 		xMove = yMove = 0;
-		xSpawn = xPos;
-		ySpawn = yPos;
 	}
 	
-
-	
-	
 	public void move() {
+		xBlock = yBlock = false;
 		if(xMove>0) {
 			int tx = xPos + xMove + width-1;
 			if(!willCollide(tx, yPos)  && !willCollide(tx, yPos+height-1)) {
 				xPos += xMove;
-				YBlock = true;//
-			}
-			else {
-				YBlock = false;	//
+				xBlock = true;//
 			}
 		} else if(xMove<0){
 			int tx = xPos + xMove;
 			if(!willCollide(tx, yPos)  && !willCollide(tx, yPos+height-1)) {
 				xPos += xMove;	
-				YBlock = true;//
-			}
-			else {
-				YBlock = false;//
+				xBlock = true;//
 			}
 		}
 		
@@ -57,20 +49,14 @@ public abstract class Entity {
 			int ty = yPos + yMove + height-1;
 			if(!willCollide(xPos, ty)  && !willCollide(xPos+width-1, ty)) {
 				yPos += yMove;
-				XBlock = true;//
-			}
-			else {
-				XBlock = false;//
+				yBlock = true;//
 			}
 							
 		} else if(yMove<0){
 			int ty = yPos + yMove;
 			if(!willCollide(xPos, ty)  && !willCollide(xPos+width-1, ty)) {
 				yPos += yMove;
-				XBlock = true;//
-			}
-			else {
-				XBlock = false;//
+				yBlock = true;//
 			}
 		}
 	}

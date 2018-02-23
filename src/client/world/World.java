@@ -1,6 +1,5 @@
 package client.world;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -17,7 +16,6 @@ public class World {
 	
 	private int width, height, xPlayerSpawn, yPlayerSpawn, numGhosts, xGhostSpawn[], yGhostSpawn[];
 	private int[][] map;
-	private boolean[][] visited;
 	
 	private EntityManager entities;
 	
@@ -35,13 +33,13 @@ public class World {
 		boolean win = true;
 		for(int x=0; x<width; x++)
 			for(int y=0; y<height; y++)
-				if(!visited[x][y])
+				if(map[x][y]==0)
 					win = false;
 		return win;
 	}
 	
 	public void tick() {
-		entities.tick(visited);
+		entities.tick(map);
 		
 		if(checkWin()) {
 			JOptionPane.showMessageDialog(null, "Hai vinto!!");
@@ -51,14 +49,10 @@ public class World {
 	}
 	
 	public void render(Graphics g) {
-		g.setColor(Color.YELLOW);
 		for(int x=0; x<width; x++)
-			for(int y=0; y<height; y++) {
+			for(int y=0; y<height; y++)
 				getTileAt(x, y).render(g, x*Tile.TILE_SIZE, y*Tile.TILE_SIZE);
-				if(!visited[x][y])
-					g.fillOval(x*Tile.TILE_SIZE+Tile.TILE_SIZE/3, y*Tile.TILE_SIZE+Tile.TILE_SIZE/3, Tile.TILE_SIZE/3, Tile.TILE_SIZE/3);
-			}
-		g.setColor(Color.DARK_GRAY);
+				
 		
 		entities.render(g);
 	}
@@ -88,14 +82,11 @@ public class World {
 		}
 		
 		map = new int[width][height];
-		visited = new boolean[width][height];
 		
 		for(int x=0; x<width; x++) 
-			for(int y=0; y<height; y++) {
+			for(int y=0; y<height; y++) 
 				map[x][y] = Integer.parseInt(tokens[y*width + x + 5 + 2*numGhosts]);
-				if(map[x][y]==1)
-					visited[x][y] = true;
-			}
+			
 	}	
 
 	private String readFileAsString(String path) {
