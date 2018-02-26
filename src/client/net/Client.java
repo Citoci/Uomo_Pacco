@@ -19,7 +19,7 @@ public class Client {
 	
 	public static void main(String[] args) throws Exception {
 		System.out.println("Connecting... ");
-		socket = new Socket("localhost", 5556);
+		socket = new Socket("172.20.10.3", 5556);
 		System.out.println("Connection successful.");
 		in = new DataInputStream(socket.getInputStream());
 		
@@ -68,7 +68,8 @@ class Input implements Runnable{
 					System.out.println(message);
 				
 			} catch (IOException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
+				
 			}
 			
 		}

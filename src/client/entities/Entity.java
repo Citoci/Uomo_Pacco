@@ -37,11 +37,17 @@ public abstract class Entity {
 				xPos += xMove;
 				xBlock = true;//
 			}
+			else {
+				xMove = 0;
+			}
 		} else if (xMove < 0) {
 			int tx = xPos + xMove;
 			if (!willCollide(tx, yPos) && !willCollide(tx, yPos + height - 1)) {
 				xPos += xMove;
 				xBlock = true;//
+			}
+			else {
+				xMove = 0;
 			}
 		}
 

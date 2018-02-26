@@ -68,7 +68,7 @@ class Users implements Runnable{
 		try {
 			name =in.readUTF();
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			//e1.printStackTrace();
 		}
 		
 		while(true) {
