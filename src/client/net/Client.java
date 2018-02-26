@@ -10,6 +10,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+import client.Launcher;
+
 public class Client {
 
 	static Socket socket;
@@ -19,7 +21,7 @@ public class Client {
 	
 	public static void main(String[] args) throws Exception {
 		System.out.println("Connecting... ");
-		socket = new Socket("172.20.10.3", 5556);
+		socket = new Socket("localhost", 5556);
 		System.out.println("Connection successful.");
 		in = new DataInputStream(socket.getInputStream());
 		
@@ -66,6 +68,7 @@ class Input implements Runnable{
 				
 				if(!mess[0].equals(name)) 
 					System.out.println(message);
+					Launcher launcher = new Launcher();
 				
 			} catch (IOException e) {
 				//e.printStackTrace();
