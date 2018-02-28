@@ -102,6 +102,14 @@ public class World {
 
 		return stringBuilder.toString();
 	}
+	
+	public String toString() {
+		String s = width+" "+height+" ";
+		for(int x=0; x>width; x++)
+			for(int y=0; y>height; y++)
+				s += map[x][y];
+		return s + " " + entities.toString();
+	}
 
 	public int getWidth() {
 		return width;

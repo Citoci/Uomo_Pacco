@@ -9,9 +9,9 @@ import client.world.Tile;
 
 public abstract class Entity {
 
-	public static final int DEFAULT_SIZE = Tile.TILE_SIZE, DEFAULT_HEALTH = 3, DEFAULT_SPEED = DEFAULT_SIZE / 16;
+	public static final int DEFAULT_SIZE = Tile.TILE_SIZE,  DEFAULT_SPEED = DEFAULT_SIZE / 16;
 
-	protected int xPos, yPos, width, height, health, speed, xMove, yMove;
+	protected int xPos, yPos, width, height, speed, xMove, yMove;
 	protected final int xSpawn, ySpawn;
 	protected boolean xBlock, yBlock;
 	
@@ -24,7 +24,6 @@ public abstract class Entity {
 		xSpawn = xPos;
 		ySpawn = yPos;
 		width = height = DEFAULT_SIZE;
-		health = DEFAULT_HEALTH;
 		speed = DEFAULT_SPEED;
 		xMove = yMove = 0;
 	}

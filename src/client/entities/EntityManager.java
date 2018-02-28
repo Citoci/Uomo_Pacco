@@ -46,7 +46,16 @@ public class EntityManager {
 			p.render(g);
 		for (Ghost gh : ghosts)
 			gh.render(g);
-
 	}
 
+	public String toString() {
+		String s = "";
+		for(Player p: players)
+			s += p.getName() + " " + p.getxPos() + " " + p.getyPos() + " " + p.getHealth() + " " + p.getPoints() + " ";
+		s += ghosts.size() + " ";
+		for(Ghost g: ghosts)
+			s += g.getxPos() + " " + g.getyPos() + " ";		
+		return s;
+	}
+	
 }

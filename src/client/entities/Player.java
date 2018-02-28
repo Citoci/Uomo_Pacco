@@ -11,10 +11,17 @@ import client.gfx.Assets;
 
 public class Player extends Entity {
 	
+	public static int DEFAULT_HEALTH = 3;
+	
+	private String name;
+	private int points, health;
+	
 	BufferedImage stopPos;
 
 	public Player(int xPos, int yPos) {
 		super(xPos, yPos);
+		
+		health = DEFAULT_HEALTH;
 
 		// Animations
 		animLf = new Animation(Assets.pacman[0]);
@@ -87,5 +94,27 @@ public class Player extends Entity {
 		else
 			return animDw.getCurrentFrame();
 	}
+	
+
+	public String getName() {
+		return name;
+	}
+	
+	public int getPoints() {
+		return points;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public int getHealth() {
+		return health;
+	}
+	
+
+	
+	
+	
 
 }
