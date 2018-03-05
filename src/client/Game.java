@@ -6,6 +6,7 @@ import java.awt.image.BufferStrategy;
 import client.gfx.Assets;
 import client.gfx.Display;
 import client.input.KeyManager;
+import client.net.Client;
 import client.world.Tile;
 import client.world.Tiles;
 import client.world.World;
@@ -31,11 +32,11 @@ public class Game implements Runnable {
 	private KeyManager keyManager;
 
 	// Net
-	// private Client client;
+	 private Client client;
 
 	// World
 	private World world;
-	private final String worldPath = "res/worlds/world3.txt";
+	private final String worldPath = "res/worlds/world2.txt";
 
 	public Game(String title) {
 		this.title = title;

@@ -1,22 +1,45 @@
 package client.net;
 
-import java.io.BufferedReader;
-import java.io.PrintWriter;
+import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
+import java.net.UnknownHostException;
+
+import client.Game;
+import client.input.KeyManager;
+import client.net.Packets.ClientPacket;
 
 public class Client {
 	
 	private Socket socket;
 	private String host = "localhost";
-	private int port;
+	private int port = 5656;
 	
-	private BufferedReader in;
-	private PrintWriter out;
-	
-	public Client() {
+	private DataInputStream in;
+	private DataOutputStream out;
 		
+	public Client(String host, int port) throws UnknownHostException, IOException {
+		this.host = host;
+		this.port = port;
+		socket = new Socket(host, port);
+		in = new DataInputStream(socket.getInputStream());
+		out = new DataOutputStream(socket.getOutputStream());
 	}
 	
+	public void tick() throws IOException {
+		KeyManager keyManager = Game.game.getKeyManager();
+		ClientPacket cP = new ClientPacket(keyManager.up, keyManager.down, keyManager.left, keyManager.right);
+		out.write(cP.getBytes());
+		
+	}
+
+	public void close() throws IOException {
+		socket.close();
+		in.close();
+		out.close();
+	}
 	
 }
 
@@ -94,42 +117,5 @@ public class Client {
 //	BufferedReader in;
 //	PrintWriter out;
 //
-//	public Client() {
-//		host = "localhost";
-//		port = 9090;
-//		try {
-//			client = new Socket(host, port);
-//			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-//			out = new PrintWriter(client.getOutputStream());
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//			System.exit(0);
-//		}
-//	}
+	
 //
-//	public void tick() {
-//		// try {
-//		// out.println(game.getKeyManager().up + " " + game.getKeyManager().down + " " +
-//		// game.getKeyManager().left
-//		// + " " + game.getKeyManager().right + " ");
-//		// out.flush();
-//		// String s = in.readLine();
-//		// game.x = (int) Float.parseFloat(s.split(" ")[0]);
-//		// game.y = (int) Float.parseFloat(s.split(" ")[1]);
-//		// } catch (IOException e) {
-//		// e.printStackTrace();
-//		// }
-//	}
-//
-//	public void close() {
-//		try {
-//			client.close();
-//			in.close();
-//			out.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-//	}
-
-
