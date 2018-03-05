@@ -21,7 +21,9 @@ public class Player extends Entity {
 	public Player(int xPos, int yPos) {
 		super(xPos, yPos);
 		
+		name = "New Player";
 		health = DEFAULT_HEALTH;
+		points = 0;
 
 		// Animations
 		animLf = new Animation(Assets.pacman[0]);
@@ -30,6 +32,13 @@ public class Player extends Entity {
 		animDw = new Animation(Assets.pacman[3]);
 		
 		stopPos = Assets.pacman[0][2];
+	}
+	
+	public Player(String name, int xPos, int yPos, int health, int points) {
+		this(xPos, yPos);
+		this.name = name;
+		this.health = health;
+		this.points = points;
 	}
 
 	private void getInput() {

@@ -130,5 +130,11 @@ public class World {
 	public EntityManager getEntities() {
 		return entities;
 	}
+	
+	public void setMap(int[][] map) {
+		this.map = map;
+		this.width = map.length;
+		this.height = map[0].length;
+	}
 
 }

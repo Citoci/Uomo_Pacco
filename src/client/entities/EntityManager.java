@@ -49,7 +49,7 @@ public class EntityManager {
 	}
 
 	public String toString() {
-		String s = "";
+		String s = players.size() + " ";
 		for(Player p: players)
 			s += p.getName() + " " + p.getxPos() + " " + p.getyPos() + " " + p.getHealth() + " " + p.getPoints() + " ";
 		s += ghosts.size() + " ";
