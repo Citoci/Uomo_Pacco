@@ -71,9 +71,9 @@ public class Packets {
 			int height = sc.nextInt();
 			byte[] byteMap = sc.next().getBytes();
 			int[][] map = new int[width][height];
-			for(int i=0; i<width; i++)
-				for(int j=0; j<height; j++)
-					map[i][j] = byteMap[i*height+j] - 0x30;
+			for(int y=0; y<height; y++)	
+				for(int x=0; x<width; x++)
+					map[x][y] = byteMap[x*width+y] - 0x30;
 			
 			world.setMap(map);
 			

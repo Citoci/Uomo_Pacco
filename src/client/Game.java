@@ -2,11 +2,13 @@ package client;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.io.IOException;
 
 import client.gfx.Assets;
 import client.gfx.Display;
 import client.input.KeyManager;
 import client.net.Client;
+import client.net.Server;
 import client.world.Tile;
 import client.world.Tiles;
 import client.world.World;
@@ -52,12 +54,22 @@ public class Game implements Runnable {
 
 		keyManager = new KeyManager();
 		display.addKeyListener(keyManager);
+		
+		
 	}
 
 	@Override
 	public void run() {
 		init();
-
+		
+	
+		try {
+			Server.main(null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		double delta = 0;
 		long now, lastTime = System.nanoTime();
 		while (running) {

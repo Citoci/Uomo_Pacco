@@ -21,7 +21,7 @@ public class Player extends Entity {
 	public Player(int xPos, int yPos) {
 		super(xPos, yPos);
 		
-		name = "New Player";
+		name = "New_Player";
 		health = DEFAULT_HEALTH;
 		points = 0;
 

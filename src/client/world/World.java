@@ -19,6 +19,13 @@ public class World {
 
 	private EntityManager entities;
 
+	/**
+	 * Costruttore del world, viene chiamato il metodo loadWorld e vengono aggiunte all'arrayList delle entity tutte le entità che servono:
+	 * - 1 player
+	 * - n ghost, dipendono dalla mappa scelta possono essere 2, 3 o 4
+	 * 
+	 * @param path la stringa che specifica che mappa caricare
+	 */
 	public World(String path) {
 		loadWorld(path);
 
@@ -28,6 +35,14 @@ public class World {
 			entities.add(new Ghost(xGhostSpawn[i] * Tile.TILE_SIZE, yGhostSpawn[i] * Tile.TILE_SIZE, i));
 	}
 
+	/**
+	 * Il metodo serve per verificare se il giocatore ha vinto o meno, per fare ciò cicla la matrice
+	 * contenente il world e verifica che in ogni casella sia stata presa la pallina, se la casella ha 
+	 * id 0 vuol dire che vi è ancora presente la pallina e il gioco prosegue. 
+	 * In caso non vi siano più palline il gioco termina e il giocatore vince.  
+	 * 
+	 * @return win valore boolean che indica se il giocatore ha vinto o meno
+	 */
 	public boolean checkWin() {
 		boolean win = true;
 		for (int x = 0; x < width; x++)
@@ -37,6 +52,11 @@ public class World {
 		return win;
 	}
 
+	/**
+	 * E' il metodo che si fa carico di aggiornare tutte le variabili della classe:
+	 * - aggiorna la posizione delle entities
+	 * - verifica che il giocatore  abbia vinto e in tal caso ferma il gioco 
+	 */
 	public void tick() {
 		entities.tick(map);
 
@@ -44,9 +64,21 @@ public class World {
 			JOptionPane.showMessageDialog(null, "Hai vinto!!");
 			Game.game.stop();
 		}
+		
+		if(cont ==1)
+			System.out.println(toString().getBytes().length);
+		cont++;
 
 	}
+	int cont = 1;
 
+	/**
+	 * E' il metodo che si occupa della renderizzazione degli elementi richiamati dalla classe:
+	 * - le caselle 
+	 * - le entities
+	 * 
+	 * @param g
+	 */
 	public void render(Graphics g) {
 		for (int x = 0; x < width; x++)
 			for (int y = 0; y < height; y++)
@@ -55,6 +87,7 @@ public class World {
 		entities.render(g);
 	}
 
+
 	public Tile getTileAt(int x, int y) {
 		Tile t = Tiles.allTiles[map[x][y]];
 		if (t == null)
@@ -62,6 +95,18 @@ public class World {
 		return t;
 	}
 
+	/**
+	 * Il metodo ha il compito di caricare il mondo scelto leggendo da file txt tutti i valori necessari
+	 * alla sua creazione:
+	 * - grandezza matrice
+	 * - dove viene creato il player
+	 * - numero di fantasmi
+	 * - dove vengono creati i fantasmi
+	 * 
+	 * Crea la matrice della mappa
+	 * 
+	 * @param path stringa del file txt da caricare
+	 */
 	private void loadWorld(String path) {
 		String worldString = readFileAsString(path);
 		String tokens[] = worldString.split("\\s+");
@@ -80,12 +125,19 @@ public class World {
 
 		map = new int[width][height];
 
-		for (int x = 0; x < width; x++)
-			for (int y = 0; y < height; y++)
+		for (int y = 0; y < height; y++)
+			for (int x = 0; x < width; x++)
 				map[x][y] = Integer.parseInt(tokens[y * width + x + 5 + 2 * numGhosts]);
+		
 
 	}
 
+	/**
+	 * Metodo per la lettura da file txt come fossa una stringa
+	 * 
+	 * @param path stringa del txt da leggere
+	 * @return stringBuilder come stringa 
+	 */
 	private String readFileAsString(String path) {
 
 		StringBuilder stringBuilder = new StringBuilder();
@@ -105,8 +157,8 @@ public class World {
 	
 	public String toString() {
 		String s = width+" "+height+" ";
-		for(int x=0; x>width; x++)
-			for(int y=0; y>height; y++)
+		for(int y=0; y<height; y++) 
+			for(int x=0; x<width; x++)
 				s += map[x][y];
 		return s + " " + entities.toString();
 	}

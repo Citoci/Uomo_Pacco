@@ -1,4 +1,4 @@
-package server.net;
+package client.net;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -7,7 +7,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import server.Game;
+import client.Game;
+import client.net.Packets.ServerPacket;
+import client.world.World;
+
 
 
 public class Server  {
@@ -23,7 +26,7 @@ public class Server  {
 	public static void main(String[] args) throws IOException {
 	
 		System.out.println("Starting server... ");
-		serverSocket  = new ServerSocket(5556);
+		serverSocket  = new ServerSocket(5656);
 		System.out.println("Server started!");
 		
 		while(true) {
@@ -65,20 +68,20 @@ class Users implements Runnable{
 	@Override
 	public void run() {
 		
-		try {
-			name =in.readUTF();
-		} catch (IOException e1) {
-			//e1.printStackTrace();
-		}
+//		try {
+//			//name =in.readUTF();
+//		} catch (IOException e1) {
+//			//e1.printStackTrace();
+//		}
+		
 		
 		while(true) {
 			try {
-				String message = in.readUTF();
-				for(int i=0; i<TOT; i++) {
-					if(user[i] != null) {
-						user[i].out.writeUTF(name + ":" +message);
-					}
-				}
+				 ServerPacket sp = new ServerPacket(new World("res/worlds/world2.txt"));
+				
+				out.write(sp.getBytes());
+				out.flush();
+				
 			} catch (IOException e) {
 				//e.printStackTrace();
 				this.out=null;
@@ -88,56 +91,4 @@ class Users implements Runnable{
 	}
 	
 }
-
-
-
-
-////	private Game game;
-//
-//	private boolean running;
-//
-//	private ServerSocket server;
-//	private int port;
-//
-//	private ArrayList<Connection> connections;
-//
-//	public Server(Game game) {
-////		this.game = game;
-//
-//		port = 1445;
-//		try {
-//			server = new ServerSocket(port);
-//		} catch (IOException e) {
-//			System.err.println("Errore creazione Server");
-//			e.printStackTrace();
-//			System.exit(0);
-//		}
-//
-//		connections = new ArrayList<>();
-//	}
-//
-//	@Override
-//	public void run() {
-//		running = true;
-//		while (running) {
-//			try {
-//				connections.add(new Connection(server.accept()));
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	}
-//
-//	public void tick() {
-//		for (Connection c : connections) {
-//			if (c.isClosed()) {
-//				connections.remove(c);
-//				continue;
-//			}
-//			c.tick();
-//		}
-//	}
-//}
-
-
 
