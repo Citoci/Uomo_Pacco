@@ -3,8 +3,16 @@ package client;
 public class Launcher {
 
 	public static void main(String[] args) {
-		Game.game = new Game("Pacman");
-		Game.game.start();
+		GameServer gameServer = new GameServer();
+		gameServer.start();
+		
+		GameClient gameClient = new GameClient("Client 1");
+		while(gameServer.isRunning());
+		gameClient.start();
+
+				
+		
+				
 	}
 
 }

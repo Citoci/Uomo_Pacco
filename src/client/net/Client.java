@@ -8,7 +8,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-import client.Game;
+import client.GameServer;
 import client.input.KeyManager;
 import client.net.Packets.ClientPacket;
 

@@ -84,14 +84,14 @@ public class Packets {
 				int yPos = sc.nextInt();
 				int health = sc.nextInt();
 				int points = sc.nextInt();
-				world.getEntities().add(new Player(name, xPos, yPos, health, points));
+				world.getEntities().add(new Player(world.getGame(), name, xPos, yPos, health, points));
 			}
 			
 			int numGhosts = sc.nextInt();
 			for (int i=0; i<numGhosts; i++) {
 				int xPos = sc.nextInt();
 				int yPos = sc.nextInt();
-				world.getEntities().add(new Ghost(xPos, yPos, i));
+				world.getEntities().add(new Ghost(world.getGame(), xPos, yPos, i));
 			}
 			
 			sc.close();

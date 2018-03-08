@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.JOptionPane;
 
 import client.Game;
+import client.GameClient;
+import client.GameServer;
 import client.gfx.Animation;
 import client.gfx.Assets;
 
@@ -13,13 +15,14 @@ public class Player extends Entity {
 	
 	public static int DEFAULT_HEALTH = 3;
 	
+	
 	private String name;
 	private int points, health;
 	
 	BufferedImage stopPos;
 
-	public Player(int xPos, int yPos) {
-		super(xPos, yPos);
+	public Player(Game game, int xPos, int yPos) {
+		super(game, xPos, yPos);
 		
 		name = "New_Player";
 		health = DEFAULT_HEALTH;
@@ -34,8 +37,8 @@ public class Player extends Entity {
 		stopPos = Assets.pacman[0][2];
 	}
 	
-	public Player(String name, int xPos, int yPos, int health, int points) {
-		this(xPos, yPos);
+	public Player(Game game, String name, int xPos, int yPos, int health, int points) {
+		this(game, xPos, yPos);
 		this.name = name;
 		this.health = health;
 		this.points = points;
@@ -43,14 +46,16 @@ public class Player extends Entity {
 
 	private void getInput() {
 		xMove = yMove = 0;
+		
+		GameClient game = (GameClient) super.game;
 
-		if (Game.game.getKeyManager().up)
+		if (game.getKeyManager().up)
 			yMove = -speed;
-		if (Game.game.getKeyManager().down)
+		if (game.getKeyManager().down)
 			yMove = speed;
-		if (Game.game.getKeyManager().left)
+		if (game.getKeyManager().left)
 			xMove = -speed;
-		if (Game.game.getKeyManager().right)
+		if (game.getKeyManager().right)
 			xMove = speed;
 	}
 
@@ -58,14 +63,15 @@ public class Player extends Entity {
 		health--;
 		xPos = xSpawn;
 		yPos = ySpawn;
-		if (health == 0) {
-			JOptionPane.showMessageDialog(null, "GAME OVER");
-			Game.game.stop();
-		}
+//		if (health == 0) {
+//			JOptionPane.showMessageDialog(null, "GAME OVER");
+//			game.stop();
+//		}
 	}
 
 	@Override
 	public void tick() {
+		
 		//Animation
 		animUp.tick();
 		animDw.tick();
@@ -84,8 +90,9 @@ public class Player extends Entity {
 			g.drawImage(Assets.heart, k, 0, DEFAULT_SIZE + 5, DEFAULT_SIZE, null);
 		}
 
+		GameClient game = (GameClient) super.game;
 		
-		if((Game.game.getKeyManager().right) || (Game.game.getKeyManager().left)|| (Game.game.getKeyManager().down) || (Game.game.getKeyManager().up)) {
+		if((game.getKeyManager().right) || (game.getKeyManager().left)|| (game.getKeyManager().down) || (game.getKeyManager().up)) {
 			g.drawImage(getCurrentAnimationFrame(), xPos, yPos, DEFAULT_SIZE, DEFAULT_SIZE, null);
 		}
 		else {

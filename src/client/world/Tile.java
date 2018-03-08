@@ -3,11 +3,11 @@ package client.world;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import client.Game;
+import client.GameClient;
 
 public abstract class Tile {
 
-	public static int TILE_SIZE = (int) (64 * Game.game.zoom);
+	public static int TILE_SIZE = (int) (64 * GameClient.zoom);
 
 	protected final int id;
 	protected BufferedImage texture;

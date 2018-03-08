@@ -8,11 +8,14 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 import client.Game;
+import client.GameServer;
 import client.entities.EntityManager;
 import client.entities.Ghost;
 import client.entities.Player;
 
 public class World {
+	
+	private Game game;
 
 	private int width, height, xPlayerSpawn, yPlayerSpawn, numGhosts, xGhostSpawn[], yGhostSpawn[];
 	private int[][] map;
@@ -26,13 +29,14 @@ public class World {
 	 * 
 	 * @param path la stringa che specifica che mappa caricare
 	 */
-	public World(String path) {
+	public World(Game game, String path) {
+		this.game = game;
 		loadWorld(path);
 
 		entities = new EntityManager();
-		entities.add(new Player(xPlayerSpawn * Tile.TILE_SIZE, yPlayerSpawn * Tile.TILE_SIZE));
+//		entities.add(new Player(game, xPlayerSpawn * Tile.TILE_SIZE, yPlayerSpawn * Tile.TILE_SIZE));
 		for (int i = 0; i < numGhosts; i++)
-			entities.add(new Ghost(xGhostSpawn[i] * Tile.TILE_SIZE, yGhostSpawn[i] * Tile.TILE_SIZE, i));
+			entities.add(new Ghost(game, xGhostSpawn[i] * Tile.TILE_SIZE, yGhostSpawn[i] * Tile.TILE_SIZE, i));
 	}
 
 	/**
@@ -62,15 +66,9 @@ public class World {
 
 		if (checkWin()) {
 			JOptionPane.showMessageDialog(null, "Hai vinto!!");
-			Game.game.stop();
+//			game.stop();
 		}
-		
-		if(cont ==1)
-			System.out.println(toString().getBytes().length);
-		cont++;
-
 	}
-	int cont = 1;
 
 	/**
 	 * E' il metodo che si occupa della renderizzazione degli elementi richiamati dalla classe:
@@ -187,6 +185,10 @@ public class World {
 		this.map = map;
 		this.width = map.length;
 		this.height = map[0].length;
+	}
+	
+	public Game getGame() {
+		return game;
 	}
 
 }

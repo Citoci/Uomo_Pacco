@@ -4,14 +4,15 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-import client.gfx.Assets;
+import client.Game;
 import client.gfx.Animation;
+import client.gfx.Assets;
 
 public class Ghost extends Entity {
 
-	public Ghost(int xPos, int yPos, int c) {
-		super(xPos, yPos);
-
+	public Ghost(Game game, int xPos, int yPos, int c) {
+		super(game ,xPos, yPos);
+		
 		// Animations
 		animUp = new Animation(Assets.ghosts[c][0]);
 		animDw = new Animation(Assets.ghosts[c][1]);
