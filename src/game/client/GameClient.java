@@ -14,7 +14,7 @@ public class GameClient extends Game {
 	// Input
 	private KeyManager keyManager;
 	
-	// Net
+	// Rete
 	private Client client;
 	
 	public GameClient(String title) {
@@ -23,7 +23,6 @@ public class GameClient extends Game {
 	
 	@Override
 	protected void init() {
-		// Initializing resources
 		Assets.init();
 		
 		display = new Display(getTitle(), 400, 200);		
@@ -54,18 +53,17 @@ public class GameClient extends Game {
 
 		Graphics g = bs.getDrawGraphics();
 
-		// Clear Screen
-		g.clearRect(0, 0, display.getWidth(), display.getHeight());
+		// Pulisce lo schermo
+		g.fillRect(0, 0, display.getWidth(), display.getHeight());
 
-		// Rendering
+		// Renderizza 
 		for(int i=0; i<client.getHealth(); i++) 
 			g.drawImage(Assets.heart, display.getWidth()-(i+1)*74, 10, 64, 64, null);
 		g.drawString("Punti Totali: "+client.getPoints(), 10, 50);
-			
 
-		// Showing
+		// Visualizza
 		bs.show();
-		// Releasing Graphics
+		// Rilascia il Graphics
 		g.dispose();
 	}
 	

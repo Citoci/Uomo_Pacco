@@ -11,20 +11,18 @@ public abstract class Tile {
 	protected BufferedImage texture;
 
 	public Tile(int id, BufferedImage texture) {
+		// Salva la texture e l'id
 		this.texture = texture;
 		this.id = id;
 
-		Tiles.allTiles[id] = this;
+		Tiles.allTiles[id] = this; // si auto-inserisce nell'array statico di tiles alla posizione univoca del suo id 
 	}
 
-	public void tick() {
-	}
+	public void tick() {}
 
 	public void render(Graphics g, int x, int y) {
 		g.drawImage(texture, x, y, TILE_SIZE, TILE_SIZE, null);
 	}
 
-	public boolean isSolid() {
-		return false;
-	}
+	public boolean isSolid() { return false; }
 }

@@ -24,10 +24,10 @@ public abstract class Game implements Runnable{
 	
 	@Override
 	public void run() {
-		// Initialize the game first of all
+		// Prima di tutto inizializza il gioco
 		init();
 		
-		// Starting the controlled loop
+		// Comincia il loop controllato
 		double delta = 0;
 		long now, lastTime = System.nanoTime();
 		while (running) {

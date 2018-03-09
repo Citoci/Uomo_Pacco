@@ -17,8 +17,8 @@ public class Server implements Runnable{
 	public Server(GameServer game, int maxNumPlayers) throws IOException {
 		this.game = game;
 
-		serverSocket = new ServerSocket(port);
-		users = new User[maxNumPlayers];
+		serverSocket = new ServerSocket(port); // Apre un nuovo serversocket
+		users = new User[maxNumPlayers]; // Istanza l'array di users
 	}
 
 
@@ -26,21 +26,21 @@ public class Server implements Runnable{
 	public void run() {
 		while(game.isRunning()) {
 			try {
-				for(int i=0; i<users.length; i++)
-					if(users[i] == null)
-						users[i] = new User(game, i, serverSocket.accept());
-				Thread.sleep(500);
+				for(int i=0; i<users.length; i++) // cicla tutti gli users
+					if(users[i] == null) // non nulli
+						users[i] = new User(game, i, serverSocket.accept()); // aggiunge all'array eventuali nuovi users
+ 				Thread.sleep(500);
 
 			} catch (IOException | InterruptedException e) { e.printStackTrace(); }
 		}
 	}
 
 	public void tick() {
-		for(int i=0; i<users.length; i++) {
-			if(users[i] != null)
+		for(int i=0; i<users.length; i++) { // cicla tutti gli users
+			if(users[i] != null) // non nulli
 				try {
-					users[i].tick();
-				} catch (IOException e) {
+					users[i].tick(); // li ticka
+				} catch (IOException e) { // se c'è eccezione chiude l'user e lo dimentica
 					e.printStackTrace();
 					users[i].close();
 					users[i] = null;

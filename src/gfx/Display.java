@@ -1,7 +1,6 @@
 package gfx;
 
 import java.awt.Canvas;
-import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
@@ -17,7 +16,7 @@ public class Display extends JFrame {
 
 		canvas = new Canvas();
 		canvas.setFocusable(false);
-		canvas.setSize(new Dimension(wRes, hRes));
+		canvas.setSize(wRes, hRes);
 
 		add(canvas);
 		pack();

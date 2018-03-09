@@ -2,6 +2,7 @@ package net;
 
 public class Packets {
 
+	// Pacchetto che contiene l'input da tastiera
 	public static class KeysPacket {
 		private boolean up, down, left, right;
 
@@ -12,6 +13,7 @@ public class Packets {
 			this.right = right;
 		}
 
+		// ricostruisce le boolean a partire dal byte
 		public KeysPacket(byte b) {
 			if(b >= 8) {
 				up = true;
@@ -28,7 +30,8 @@ public class Packets {
 			if(b >= 1) 
 				right = true;
 		}
-
+		
+		// Costruisce un byte (0000xxxx) usando le 4 boolean di input 
 		public byte getByte() {
 			byte b = 0;			
 			if(up) b += 8;
@@ -43,11 +46,4 @@ public class Packets {
 		public boolean left() { return left; }
 		public boolean right() { return right; }
 	}
-	
-	public static class PlayerPacket {
-		int health;
-		
-		
-	}
-
 }

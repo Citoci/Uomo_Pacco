@@ -14,7 +14,7 @@ public class Player extends Entity {
 	private String name;
 	private int id, health, points, invulnerableTime;
 
-	BufferedImage stopPos;
+	BufferedImage stopPos; // Immagine del giocatore fermo
 
 	public Player(GameServer game, int id, String name, int xPos, int yPos) {
 		super(game, xPos, yPos);
@@ -34,6 +34,9 @@ public class Player extends Entity {
 		stopPos = Assets.pacman[0][2];
 	}
 	
+	/**
+	 * Prende le boolean di spostamento e le traduce in xMove e yMove in base alla speed del giocatore
+	 */
 	public void getInput(boolean up, boolean down, boolean left, boolean right) {
 		xMove = yMove = 0;
 		if (up)
@@ -46,6 +49,10 @@ public class Player extends Entity {
 			xMove = speed;
 	}
 
+	/**
+	 * Il giocatore viene colpito
+	 * Se è invulnerabile non succede nulla, altrimenti toglie una vita e resetta la posizione
+	 */
 	public void hurt() {
 		if(invulnerableTime > 0)
 			return;
@@ -53,10 +60,16 @@ public class Player extends Entity {
 		resetPos();
 	}
 	
+	/**
+	 * Assegna un punto al giocatore
+	 */
 	public void makePoint() {
 		points++;
 	}
 	
+	/**
+	 * Riporta il giocatore alla sua posizione di Spawn e lo rende invulnerabile per 200 ticks
+	 */
 	@Override
 	protected void resetPos() {
 		super.resetPos();
@@ -65,15 +78,17 @@ public class Player extends Entity {
 
 	@Override
 	public void tick() {
-		//Animation
+		// Tick delle animazioni
 		animUp.tick();
 		animDw.tick();
 		animLf.tick();
 		animRg.tick();
 		
+		// Se siamo invulnerabili decrementa di uno
 		if(invulnerableTime > 0)
 			invulnerableTime --;
 		
+		// Muove il giocatore
 		move();
 	}
 
@@ -81,7 +96,7 @@ public class Player extends Entity {
 	public void render(Graphics g) {
 		if(invulnerableTime/15%2 == 0) {
 			g.drawImage(getCurrentAnimationFrame(), xPos, yPos, DEFAULT_SIZE, DEFAULT_SIZE, null);
-			g.drawString(name, xPos, yPos+DEFAULT_SIZE/2);
+			g.drawString(name, xPos, yPos+DEFAULT_SIZE/2); // Nome del giocatore
 		}
 	}
 
@@ -90,9 +105,9 @@ public class Player extends Entity {
 			return animLf.getCurrentFrame();
 		else if (xMove > 0 && !xBlock)
 			return animRg.getCurrentFrame();
-		else if (yMove < 0)
+		else if (yMove < 0 && !yBlock)
 			return animUp.getCurrentFrame();
-		else if (yMove > 0)
+		else if (yMove > 0 && !yBlock)
 			return animDw.getCurrentFrame();
 		else
 			return stopPos;

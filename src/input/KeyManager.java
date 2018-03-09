@@ -7,9 +7,6 @@ public class KeyManager implements KeyListener {
 
 	public boolean up, down, left, right;
 
-	public KeyManager() {
-	}
-
 	@Override
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
@@ -55,7 +52,6 @@ public class KeyManager implements KeyListener {
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {
-	}
+	public void keyTyped(KeyEvent e) { }
 
 }

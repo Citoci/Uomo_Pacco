@@ -4,39 +4,39 @@ import java.awt.image.BufferedImage;
 
 public class Animation {
 
-	public static final int DEFAULT_SPEED = 200;
+	public static final int DEFAULT_DELAY = 200; 
 
-	private int speed, index;
+	private int delay, animationIndex;
 	private long lastTime, timer;
 	private BufferedImage[] frames;
 
 	public Animation(BufferedImage[] frames) {
-		this.speed = DEFAULT_SPEED;
+		this.delay = DEFAULT_DELAY;
 		this.frames = frames;
-		index = 0;
+		animationIndex = 0;
 		timer = 0;
 		lastTime = System.currentTimeMillis();
 	}
 
 	public Animation(int speed, BufferedImage[] frames) {
 		this(frames);
-		this.speed = speed;
+		this.delay = speed;
 	}
 
 	public void tick() {
 		timer += System.currentTimeMillis() - lastTime;
 		lastTime = System.currentTimeMillis();
 
-		if (timer > speed) {
-			index++;
+		if (timer > delay) {
+			animationIndex++;
 			timer = 0;
-			if (index >= frames.length)
-				index = 0;
+			if (animationIndex >= frames.length)
+				animationIndex = 0;
 		}
 	}
 
 	public BufferedImage getCurrentFrame() {
-		return frames[index];
+		return frames[animationIndex];
 	}
 
 }

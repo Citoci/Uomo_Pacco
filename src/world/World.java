@@ -23,35 +23,44 @@ public class World {
 	public World(GameServer game, String path) {
 		this.game = game;
 		
-		loadWorld(path);
+		loadWorld(path); // Carica il mondo da file
 
 		entities = new EntityManager();
-		for (int i = 0; i < numGhosts; i++)
+		for (int i = 0; i < numGhosts; i++) // Crea subito i fantasmini
 			entities.add(new Ghost(game, xGhostSpawn[i] * Tile.TILE_SIZE, yGhostSpawn[i] * Tile.TILE_SIZE, i));
 	}
 	
 	public Tile getTileAt(int x, int y) {
-		if(x<0 || x>width || y<0 || y>height)
+		if(x<0 || x>width || y<0 || y>height) // se le coordinate sforano la mappa, ritorna una casella bianca
 			return Tiles.allTiles[0];
-		Tile t = Tiles.allTiles[map[x][y]];
+		Tile t = Tiles.allTiles[map[x][y]]; // prova a prendere la casella giusta
 		if (t == null)
-			return Tiles.allTiles[0];
+			return Tiles.allTiles[0]; // se non esiste ritorna una casella bianca
 		return t;
 	}
 	
+	/**
+	 * Crea un nuovo giocatore nel mondo e lo aggiunge al manager di entity
+	 * @param id id del giocatore
+	 * @param name nome del giocatore
+	 * @return riferimento al giocatore creato
+	 */
 	public Player createPlayer(int id, String name) {
 		Player p = new Player(game, id, name, xPlayerSpawn * Tile.TILE_SIZE, yPlayerSpawn * Tile.TILE_SIZE);
 		entities.add(p);
 		return p;
 	}
 
+	/**
+	 * Controlla se in tutta la mappa ci sono delle tile con la moneta
+	 * @return true se non ce ne sono, false se ce n'è almeno una
+	 */
 	public boolean checkWin() {
-		boolean win = true;
 		for (int x = 0; x < width; x++)
 			for (int y = 0; y < height; y++)
 				if (map[x][y] == 0)
-					win = false;
-		return win;
+					return false;
+		return true;
 	}
 
 	public void tick() {
@@ -70,13 +79,17 @@ public class World {
 	public void render(Graphics g) {
 		for (int x = 0; x < width; x++)
 			for (int y = 0; y < height; y++)
-				getTileAt(x, y).render(g, x * Tile.TILE_SIZE, y * Tile.TILE_SIZE);
-		entities.render(g);
+				getTileAt(x, y).render(g, x * Tile.TILE_SIZE, y * Tile.TILE_SIZE); // prima renderizzo le tiles
+		entities.render(g); // poi le entities
 	}	
 
+	/**
+	 * Carica e istanzia il mondo da un file
+	 * @param path il percorso del file
+	 */
 	private void loadWorld(String path) {
-		String worldString = readFileAsString(path);
-		String tokens[] = worldString.split("\\s+");
+		String worldString = readFileAsString(path); // legge il file come una stringa
+		String tokens[] = worldString.split("\\s+"); // splitta in tanti tokens
 
 		width = Integer.parseInt(tokens[0]);
 		height = Integer.parseInt(tokens[1]);
@@ -86,18 +99,24 @@ public class World {
 		numGhosts = Integer.parseInt(tokens[5]);
 		xGhostSpawn = new int[numGhosts];
 		yGhostSpawn = new int[numGhosts];
-		for (int i = 0; i < numGhosts; i++) {
+		for (int i = 0; i < numGhosts; i++) { 
 			xGhostSpawn[i] = Integer.parseInt(tokens[6 + i * 2]);
 			yGhostSpawn[i] = Integer.parseInt(tokens[7 + i * 2]);
 		}
 
 		map = new int[width][height];
 
+		// legge la mappa
 		for (int y = 0; y < height; y++)
 			for (int x = 0; x < width; x++)
-				map[x][y] = Integer.parseInt(tokens[y * width + x + 6 + 2 * numGhosts]);
+				map[x][y] = Integer.parseInt(tokens[y * width + x + 6 + 2 * numGhosts]); 
 	}
 
+	/**
+	 * Legge un file e lo trasforma in una stringa di testo
+	 * @param path il percorso del file
+	 * @return la stringa creata
+	 */
 	private String readFileAsString(String path) {
 		StringBuilder stringBuilder = new StringBuilder();
 

@@ -16,10 +16,10 @@ public class GameServer extends Game {
 	// Threads
 	private Thread serverThread;
 
-	// Net
+	// Rete
 	private Server server;
 
-	// World
+	// Mondo
 	private World world;
 	private final String worldPath = "res/worlds/world2.txt";
 
@@ -29,17 +29,17 @@ public class GameServer extends Game {
 
 	@Override
 	public void init() {
-		// Initializing resources
+		// Inizializza risorse e tiles
 		Assets.init();
 		Tiles.init(ZOOM);
 
-		// Creating the world
+		// Crea il mondo
 		world = new World(this, worldPath);
 
-		// Creating the frame
+		// Crea il Display
 		display = new Display(getTitle(), world.getWidth() * Tile.TILE_SIZE, world.getHeight() * Tile.TILE_SIZE);
 
-		// Creating and starting the server
+		// Crea e avvia il server
 		try {
 			server = new Server(this, world.getMaxNumPlayers());
 		} catch (IOException e) {
@@ -50,8 +50,6 @@ public class GameServer extends Game {
 		serverThread = new Thread(server, "serverThread");
 		serverThread.start();
 	}
-
-	
 
 	public void tick() {
 		world.tick();
@@ -67,15 +65,15 @@ public class GameServer extends Game {
 
 		Graphics g = bs.getDrawGraphics();
 
-		// Clear Screen
+		// Pulisce lo schermo
 		g.fillRect(0, 0, display.getWidth(), display.getHeight());
 
-		// Rendering
+		// Renderizza 
 		world.render(g);
 
-		// Showing
+		// Visualizza
 		bs.show();
-		// Releasing Graphics
+		// Rilascia il Graphics
 		g.dispose();
 
 	}
