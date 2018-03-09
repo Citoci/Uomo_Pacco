@@ -12,8 +12,7 @@ import server.entities.EntityManager;
 import server.entities.Ghost;
 import server.entities.Player;
 
-public class World {
-	
+public class World {	
 	private Game game;
 
 	private int width, height, maxNumPlayers, xPlayerSpawn, yPlayerSpawn, numGhosts, xGhostSpawn[], yGhostSpawn[];
@@ -96,7 +95,6 @@ public class World {
 	}
 
 	private String readFileAsString(String path) {
-
 		StringBuilder stringBuilder = new StringBuilder();
 
 		try {

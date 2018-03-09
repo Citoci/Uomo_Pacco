@@ -26,7 +26,7 @@ public class Tiles {
 		}
 	}
 	
-	public static Tile[] allTiles; //array statico di tiles dove vengono salvate in base all'id le varie istanze delle tiles
+	public static Tile[] allTiles; // array statico con un'istanza per ogni tipo di tile, con posizione in base all'id
 	public static Tile coinTile, wallTile, blankTile;
 
 	public static void init(double zoom) {

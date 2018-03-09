@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import client.input.KeyManager;
-import server.net.KeysPacket;
+import server.net.Packets.KeysPacket;
 
 public class Client {
 	
@@ -30,9 +30,11 @@ public class Client {
 	}
 
 	public void tick() throws IOException {
-		KeysPacket cP = new KeysPacket(keyManager.up, keyManager.down, keyManager.left, keyManager.right);
-		out.write(cP.getByte());
+		KeysPacket kP = new KeysPacket(keyManager.up, keyManager.down, keyManager.left, keyManager.right);
+		out.write(kP.getByte());
 		out.flush();
+//		int health = in.readInt();
+		
 	}
 
 	public void close() throws IOException {

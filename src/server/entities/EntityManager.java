@@ -37,7 +37,6 @@ public class EntityManager {
 					p.hurt();
 				
 		}
-		if(players.size()!=0)
 		for (Ghost g : ghosts)
 			g.tick();
 	}
