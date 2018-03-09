@@ -29,7 +29,8 @@ public class User {
 		in = new DataInputStream(socket.getInputStream());
 		out = new DataOutputStream(socket.getOutputStream());
 		
-		player = game.getWorld().createPlayer(id);		
+		String name = in.readUTF();
+		player = game.getWorld().createPlayer(id, name);		
 	}
 	
 	public void tick() throws IOException {

@@ -19,26 +19,30 @@ public class GameClient extends Game {
 	
 	public GameClient(String title) {
 		super(title);
-		display = new Display(title, 400, 200);		
+	}
+	
+	@Override
+	protected void init() {
+		// Initializing resources
+		Assets.init();
+		
+		display = new Display(getTitle(), 400, 200);		
 		
 		keyManager = new KeyManager();
 		display.addKeyListener(keyManager);
 		
 		try {
-			client = new Client(keyManager, "localhost", 5656);
+			client = new Client(keyManager);
 		} catch (IOException e) { e.printStackTrace(); }
-		
-	}
-	
-	@Override
-	protected void init() {
-		
 	}
 	
 	public void tick() {
 		try {
 			client.tick();
-		} catch (IOException e) { e.printStackTrace(); }
+		} catch (IOException e) { 
+			e.printStackTrace();
+			stop();
+		}
 	}
 	
 	public void render() {
@@ -54,17 +58,15 @@ public class GameClient extends Game {
 		g.clearRect(0, 0, display.getWidth(), display.getHeight());
 
 		// Rendering
-		for(int i=0; i<client.getHealth(); i++) {
-			g.drawImage(Assets.ball, i*64, 0, 64, 64, null);
-			g.fillOval(i*64, 0, 64, 64);
+		for(int i=0; i<client.getHealth(); i++) 
+			g.drawImage(Assets.heart, display.getWidth()-(i+1)*74, 10, 64, 64, null);
+		g.drawString("Punti Totali: "+client.getPoints(), 10, 50);
 			
-		}
 
 		// Showing
 		bs.show();
 		// Releasing Graphics
 		g.dispose();
-
 	}
 	
 

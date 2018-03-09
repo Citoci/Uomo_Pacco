@@ -11,14 +11,16 @@ public class Player extends Entity {
 
 	public static int DEFAULT_HEALTH = 3;
 
+	private String name;
 	private int id, health, points, invulnerableTime;
 
 	BufferedImage stopPos;
 
-	public Player(GameServer game, int id, int xPos, int yPos) {
+	public Player(GameServer game, int id, String name, int xPos, int yPos) {
 		super(game, xPos, yPos);
 
 		this.id = id;
+		this.name = name;
 		health = DEFAULT_HEALTH;
 		points = 0;
 		invulnerableTime = 0;
@@ -51,6 +53,10 @@ public class Player extends Entity {
 		resetPos();
 	}
 	
+	public void makePoint() {
+		points++;
+	}
+	
 	@Override
 	protected void resetPos() {
 		super.resetPos();
@@ -73,12 +79,10 @@ public class Player extends Entity {
 
 	@Override
 	public void render(Graphics g) {
-		// drawing health
-		for (int i = 0; i < health; i++) 
-			g.drawImage(Assets.heart, i*DEFAULT_SIZE, 0, DEFAULT_SIZE, DEFAULT_SIZE, null);
-
-		if(invulnerableTime/15%2 == 0) 
-			g.drawImage(getCurrentAnimationFrame(), xPos, yPos, DEFAULT_SIZE, DEFAULT_SIZE, null);	
+		if(invulnerableTime/15%2 == 0) {
+			g.drawImage(getCurrentAnimationFrame(), xPos, yPos, DEFAULT_SIZE, DEFAULT_SIZE, null);
+			g.drawString(name, xPos, yPos+DEFAULT_SIZE/2);
+		}
 	}
 
 	private BufferedImage getCurrentAnimationFrame() {

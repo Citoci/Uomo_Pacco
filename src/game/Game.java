@@ -7,12 +7,13 @@ public abstract class Game implements Runnable{
 	// Config
 	private boolean running;
 	public final int FPS = 60;
+	public final double ZOOM = 1;
 
 	// Thread
 	private Thread gameThread;
 
 	// GFX
-	protected final String title;
+	private final String title;
 	protected Display display;
 
 	public Game(String title) {
@@ -58,7 +59,11 @@ public abstract class Game implements Runnable{
 			return;
 		running = false;
 		gameThread.interrupt();
+		System.exit(0);
 	}
 
+	// Getters
 	public boolean isRunning() { return running; }
+	public String getTitle() { return title; }
+	public Display getDisplay() { return display; }
 }

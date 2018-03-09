@@ -13,9 +13,6 @@ import world.Tiles;
 import world.World;
 
 public class GameServer extends Game {
-	// Configs
-	private final double ZOOM = 1;
-	
 	// Threads
 	private Thread serverThread;
 
@@ -40,7 +37,7 @@ public class GameServer extends Game {
 		world = new World(this, worldPath);
 
 		// Creating the frame
-		display = new Display(title, world.getWidth() * Tile.TILE_SIZE, world.getHeight() * Tile.TILE_SIZE);
+		display = new Display(getTitle(), world.getWidth() * Tile.TILE_SIZE, world.getHeight() * Tile.TILE_SIZE);
 
 		// Creating and starting the server
 		try {
@@ -83,8 +80,7 @@ public class GameServer extends Game {
 
 	}
 
-	// Getters and Setters
-	
+	// Getters and Setters	
 	public World getWorld() { return world; }
 
 }

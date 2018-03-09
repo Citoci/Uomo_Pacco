@@ -3,8 +3,6 @@ package entities;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import world.Tile;
 
 public class EntityManager {
@@ -33,6 +31,8 @@ public class EntityManager {
 		
 		for (Player p : players) {
 			p.tick();
+			if(map[(p.getxPos() + p.width / 2) / Tile.TILE_SIZE][(p.getyPos() + p.height / 2) / Tile.TILE_SIZE] == 0)
+					p.makePoint();
 			map[(p.getxPos() + p.width / 2) / Tile.TILE_SIZE][(p.getyPos() + p.height / 2) / Tile.TILE_SIZE] = 2;
 
 			for (Ghost g : ghosts)

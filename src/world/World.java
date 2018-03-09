@@ -39,8 +39,8 @@ public class World {
 		return t;
 	}
 	
-	public Player createPlayer(int id) {
-		Player p = new Player(game, id, xPlayerSpawn * Tile.TILE_SIZE, yPlayerSpawn * Tile.TILE_SIZE);
+	public Player createPlayer(int id, String name) {
+		Player p = new Player(game, id, name, xPlayerSpawn * Tile.TILE_SIZE, yPlayerSpawn * Tile.TILE_SIZE);
 		entities.add(p);
 		return p;
 	}
