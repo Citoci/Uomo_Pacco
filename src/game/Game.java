@@ -7,7 +7,7 @@ public abstract class Game implements Runnable{
 	// Config
 	private boolean running;
 	public final int FPS = 60;
-	public final double ZOOM = 1;
+	public final double ZOOM = 0.6;
 
 	// Thread
 	private Thread gameThread;

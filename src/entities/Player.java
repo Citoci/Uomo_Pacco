@@ -1,5 +1,7 @@
 package entities;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -96,7 +98,9 @@ public class Player extends Entity {
 	public void render(Graphics g) {
 		if(invulnerableTime/15%2 == 0) {
 			g.drawImage(getCurrentAnimationFrame(), xPos, yPos, DEFAULT_SIZE, DEFAULT_SIZE, null);
-			g.drawString(name, xPos, yPos+DEFAULT_SIZE/2); // Nome del giocatore
+			g.setFont(new Font ("Arial", 1, 15)); 
+			g.setColor(Color.WHITE);
+			g.drawString(name, xPos, yPos - 5); // Nome del giocatore
 		}
 	}
 
