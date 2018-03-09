@@ -1,4 +1,4 @@
-package client.gfx;
+package server.gfx;
 
 import java.awt.image.BufferedImage;
 
@@ -20,7 +20,7 @@ public class Assets {
 				for (int f = 0; f < 2; f++)
 					ghosts[g][m][f] = ImageUtils.crop(ghostSheet,  (20 * f) + (40 * m), g*20, 16, 16);
 		
-		pacmanSheet = ImageUtils.loadImage("pacman2.png");
+		pacmanSheet = ImageUtils.loadImage("pacman.png");
 		pacman = new BufferedImage[4][3];
 		
 		for(int m=0; m<4; m++) 

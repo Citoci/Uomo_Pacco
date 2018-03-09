@@ -1,4 +1,4 @@
-package client.gfx;
+package server.gfx;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

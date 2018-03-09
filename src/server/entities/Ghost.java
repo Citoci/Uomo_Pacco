@@ -1,18 +1,18 @@
-package client.entities;
+package server.entities;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-import client.Game;
-import client.gfx.Animation;
-import client.gfx.Assets;
+import server.Game;
+import server.gfx.Animation;
+import server.gfx.Assets;
 
 public class Ghost extends Entity {
 
 	public Ghost(Game game, int xPos, int yPos, int c) {
-		super(game ,xPos, yPos);
-		
+		super(game, xPos, yPos);
+
 		// Animations
 		animUp = new Animation(Assets.ghosts[c][0]);
 		animDw = new Animation(Assets.ghosts[c][1]);
@@ -35,7 +35,7 @@ public class Ghost extends Entity {
 		now = System.nanoTime();
 		delta += (now - last);
 		last = now;
-		if (delta >= 2e9 || (!xBlock && !yBlock)) {
+		if (delta >= 2e9 || (xBlock && yBlock)) {
 			if ((new Random()).nextInt(2) == 0)
 				xMove = speed;
 			else

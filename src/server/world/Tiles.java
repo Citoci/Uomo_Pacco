@@ -1,6 +1,6 @@
-package client.world;
+package server.world;
 
-import client.gfx.Assets;
+import server.gfx.Assets;
 
 public class Tiles {
 	public static class BlankTile extends Tile {
@@ -25,15 +25,16 @@ public class Tiles {
 			super(id, Assets.ball);
 		}
 	}
-
 	
 	public static Tile[] allTiles; //array statico di tiles dove vengono salvate in base all'id le varie istanze delle tiles
 	public static Tile coinTile, wallTile, blankTile;
 
-	public static void init() {
+	public static void init(double zoom) {
 		allTiles = new Tile[8];
 		coinTile = new CoinTile(0);
 		wallTile = new WallTile(1);
 		blankTile = new BlankTile(2);
+		
+		Tile.TILE_SIZE *= zoom;
 	}
 }
