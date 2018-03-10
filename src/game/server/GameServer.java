@@ -1,5 +1,7 @@
 package game.server;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
@@ -77,7 +79,8 @@ public class GameServer extends Game {
 		g.dispose();
 
 	}
-
+	
+	
 	// Getters and Setters	
 	public World getWorld() { return world; }
 

@@ -28,12 +28,12 @@ public class Player extends Entity {
 		invulnerableTime = 0;
 
 		// Animations
-		animLf = new Animation(Assets.pacman[0]);
-		animRg = new Animation(Assets.pacman[1]);
-		animUp = new Animation(Assets.pacman[2]);
-		animDw = new Animation(Assets.pacman[3]);
+		animLf = new Animation(Assets.pacman[id][0]);
+		animRg = new Animation(Assets.pacman[id][1]);
+		animUp = new Animation(Assets.pacman[id][2]);
+		animDw = new Animation(Assets.pacman[id][3]);
 		
-		stopPos = Assets.pacman[0][2];
+		stopPos = Assets.pacman[id][0][2];
 	}
 	
 	/**

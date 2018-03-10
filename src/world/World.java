@@ -1,5 +1,6 @@
 package world;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,6 +15,7 @@ import game.server.GameServer;
 
 public class World {	
 	private GameServer game;
+	private Graphics g;
 
 	private int width, height, maxNumPlayers, xPlayerSpawn, yPlayerSpawn, numGhosts, xGhostSpawn[], yGhostSpawn[];
 	private int[][] map;
@@ -77,6 +79,7 @@ public class World {
 	}
 
 	public void render(Graphics g) {
+		
 		for (int x = 0; x < width; x++)
 			for (int y = 0; y < height; y++)
 				getTileAt(x, y).render(g, x * Tile.TILE_SIZE, y * Tile.TILE_SIZE); // prima renderizzo le tiles

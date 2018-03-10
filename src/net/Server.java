@@ -28,8 +28,8 @@ public class Server implements Runnable{
 			try {
 				for(int i=0; i<users.length; i++) // cicla tutti gli users
 					if(users[i] == null) // non nulli
-						users[i] = new User(game, i, serverSocket.accept()); // aggiunge all'array eventuali nuovi users
- 				Thread.sleep(500);
+						users[i] = new User(game, i, serverSocket.accept()); // aggiunge all'array eventuali nuovi users 					
+				Thread.sleep(500);
 
 			} catch (IOException | InterruptedException e) { e.printStackTrace(); }
 		}

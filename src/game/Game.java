@@ -1,5 +1,11 @@
 package game;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
 import gfx.Display;
 
 public abstract class Game implements Runnable{
@@ -58,12 +64,15 @@ public abstract class Game implements Runnable{
 		if (!running)
 			return;
 		running = false;
+		
 		gameThread.interrupt();
 		System.exit(0);
 	}
+
 
 	// Getters
 	public boolean isRunning() { return running; }
 	public String getTitle() { return title; }
 	public Display getDisplay() { return display; }
+	public Graphics getG() { return display.getGraphics();}
 }
