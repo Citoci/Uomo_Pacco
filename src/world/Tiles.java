@@ -1,5 +1,8 @@
 package world;
 
+import java.awt.image.BufferedImage;
+import java.util.Random;
+
 import gfx.Assets;
 
 /**
@@ -28,19 +31,39 @@ public class Tiles {
 	}
 	
 	// Tile frutto
-	public static class FruitTile extends Tile {
-		public FruitTile(int id) { super(id, Assets.heart); }
+	
+	
+	
+	public static class AppleTile extends Tile {
+		public AppleTile(int id) { super(id, Assets.fruits[3]); }
 	}
 	
+	public static class CherryTile extends Tile {
+		public CherryTile(int id) { super(id, Assets.fruits[0]); }
+	}
+	
+	public static class StrawTile extends Tile {
+		public StrawTile(int id) { super(id, Assets.fruits[2]); }
+	}
+	
+	public static class OrangeTile extends Tile {
+		public OrangeTile(int id) { super(id, Assets.fruits[1]); }
+	}
+	
+	
 	public static Tile[] allTiles; // array statico con un'istanza per ogni tipo di tile, con posizione in base all'id
-	public static Tile coinTile, wallTile, blankTile, fruitTile;
+	public static Tile coinTile, wallTile, blankTile, cherryTile, appleTile, orangeTile, strawTile;
 
 	public static void init(double zoom) {
 		allTiles = new Tile[8];
 		coinTile = new CoinTile(0);
 		wallTile = new WallTile(1);
 		blankTile = new BlankTile(2);
-		fruitTile = new FruitTile(3);
+		
+		cherryTile = new CherryTile(3);
+		strawTile = new StrawTile(4);
+		orangeTile = new OrangeTile(5);
+		appleTile = new AppleTile(6);
 		
 		Tile.TILE_SIZE *= zoom; // ridimensiona le tile in base allo ZOOM
 	}

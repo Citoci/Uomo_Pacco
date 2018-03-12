@@ -4,14 +4,20 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-	public static BufferedImage pacman[][][], wall, ball, heart, ghosts[][][], ghostSheet, pacmanSheet,pacDiedSheet, pacDied[];
+	public static BufferedImage pacmans[][][], fruitSheet,fruits[],wall, ball, heart, ghosts[][][], ghostSheet, pacmanSheet,pacDiedSheet, pacDied[];
 
 	public static void init() {
 		//pacman = ImageUtils.loadImage("pacman.png");
 		wall = ImageUtils.loadImage("wall.png");
 		ball = ImageUtils.loadImage("coin.png");
 		heart = ImageUtils.loadImage("heart.png");
-
+		
+		fruitSheet = ImageUtils.loadImage("fruits.png");
+		fruits = new BufferedImage[4];
+		for(int i=0; i<4; i++) {
+			fruits[i]=ImageUtils.crop(fruitSheet, 0, 20*i, 14, 14);
+		}
+		
 		ghosts = new BufferedImage[4][4][2];
 		ghostSheet = ImageUtils.loadImage("ghosts.png");
 
@@ -21,13 +27,13 @@ public class Assets {
 					ghosts[g][m][f] = ImageUtils.crop(ghostSheet,  (20 * f) + (40 * m), g*20, 16, 16);
 		
 		
-		pacman = new BufferedImage[2][4][3];
+		pacmans = new BufferedImage[2][4][3];
 		pacmanSheet = ImageUtils.loadImage("pacman.png");
 		
 		for(int p=0; p<2; p++) {
 			for(int m=0; m<4; m++) 
 				for(int f=0; f<3; f++)
-					pacman[p][m][f] = ImageUtils.crop(pacmanSheet, (20*f)+(60*m), p*16, 14+p, 14+p);
+					pacmans[p][m][f] = ImageUtils.crop(pacmanSheet, (20*f)+(60*m), p*16, 14+p, 14+p);
 			//il +p è temporaneo, causa dimensioni diverse pacman
 					
 		}
