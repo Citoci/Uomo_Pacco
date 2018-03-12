@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-	public static BufferedImage pacman[][][], wall, ball, heart, ghosts[][][], ghostSheet, pacmanSheet;
+	public static BufferedImage pacman[][][], wall, ball, heart, ghosts[][][], ghostSheet, pacmanSheet,pacDiedSheet, pacDied[];
 
 	public static void init() {
 		//pacman = ImageUtils.loadImage("pacman.png");
@@ -30,10 +30,14 @@ public class Assets {
 					pacman[p][m][f] = ImageUtils.crop(pacmanSheet, (20*f)+(60*m), p*16, 14+p, 14+p);
 			//il +p è temporaneo, causa dimensioni diverse pacman
 					
-				
 		}
-				
 		
+		pacDied = new BufferedImage[12];
+		pacDiedSheet = ImageUtils.loadImage("pacDied.png");
+				
+		for(int f=0; f<12; f++) {
+			pacDied[f]=ImageUtils.crop(pacDiedSheet, 20*f, 0, 14, 14);
+		}
 	
 
 	}

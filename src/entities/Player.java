@@ -33,6 +33,8 @@ public class Player extends Entity {
 		animUp = new Animation(Assets.pacman[id][2]);
 		animDw = new Animation(Assets.pacman[id][3]);
 		
+		animDied = new Animation(Assets.pacDied);
+		
 		stopPos = Assets.pacman[id][0][2];
 	}
 	
@@ -59,7 +61,8 @@ public class Player extends Entity {
 		if(invulnerableTime > 0)
 			return;
 		health--;
-		resetPos();
+		if(health>0)
+			resetPos();
 	}
 	
 	/**
@@ -85,6 +88,7 @@ public class Player extends Entity {
 		animDw.tick();
 		animLf.tick();
 		animRg.tick();
+		animDied.tick();
 		
 		// Se siamo invulnerabili decrementa di uno
 		if(invulnerableTime > 0)
@@ -96,27 +100,36 @@ public class Player extends Entity {
 
 	@Override
 	public void render(Graphics g) {
-		if(invulnerableTime/15%2 == 0) {
+		
+		if(invulnerableTime/15%2 == 0 ) {
 			g.drawImage(getCurrentAnimationFrame(), xPos, yPos, DEFAULT_SIZE, DEFAULT_SIZE, null);
 			g.setFont(new Font ("Arial", 1, 15)); 
 			g.setColor(Color.WHITE);
 			g.drawString(name, xPos, yPos - 5); // Nome del giocatore
 		}
+		
 	}
+	
+	
 
 	private BufferedImage getCurrentAnimationFrame() {
-		if (xMove < 0 && !xBlock)
-			return animLf.getCurrentFrame();
-		else if (xMove > 0 && !xBlock)
-			return animRg.getCurrentFrame();
-		else if (yMove < 0 && !yBlock)
-			return animUp.getCurrentFrame();
-		else if (yMove > 0 && !yBlock)
-			return animDw.getCurrentFrame();
-		else
-			return stopPos;
+		if(health>0) {
+			if (xMove < 0 && !xBlock)
+				return animLf.getCurrentFrame();
+			else if (xMove > 0 && !xBlock)
+				return animRg.getCurrentFrame();
+			else if (yMove < 0 && !yBlock)
+				return animUp.getCurrentFrame();
+			else if (yMove > 0 && !yBlock)
+				return animDw.getCurrentFrame();
+			else
+				return stopPos;
+		}
+		else {
+			return animDied.getCurrentFrame();
+		}
 	}
-
+	
 	public int getId() { return id; }
 	public int getPoints() { return points; }
 	public int getHealth() { return health; }

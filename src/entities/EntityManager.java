@@ -25,9 +25,6 @@ public class EntityManager {
 
 
 	public void tick(int[][] map) {
-		for(int i=0; i<players.size(); i++) 
-			if(!players.get(i).isAlive())
-				players.remove(i);
 		
 		for (Player p : players) {
 			p.tick();
@@ -46,7 +43,10 @@ public class EntityManager {
 
 	public void render(Graphics g) {
 		for (Player p : players)
-			p.render(g);
+			if(p.getHealth()>=0) {
+				p.render(g);
+			}
+			
 		for (Ghost gh : ghosts)
 			gh.render(g);
 	}

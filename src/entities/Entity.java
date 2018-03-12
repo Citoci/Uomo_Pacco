@@ -19,7 +19,7 @@ public abstract class Entity {
 	protected boolean xBlock, yBlock;
 	
 	// Animations
-	protected Animation animUp, animDw, animLf, animRg;
+	protected Animation animUp, animDw, animLf, animRg, animDied;
 
 	public Entity(GameServer game, int xSpawn, int ySpawn) {
 		this.game = game;
