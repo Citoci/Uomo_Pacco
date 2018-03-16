@@ -42,11 +42,12 @@ public class EntityManager {
 	}
 
 	public void render(Graphics g) {
-		for (Player p : players)
+		for (Player p : players) {
 			if(p.getHealth()>=0) {
 				p.render(g);
 			}
 			
+		}
 		for (Ghost gh : ghosts)
 			gh.render(g);
 	}

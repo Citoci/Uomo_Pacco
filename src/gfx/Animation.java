@@ -34,6 +34,19 @@ public class Animation {
 				animationIndex = 0;
 		}
 	}
+	
+	public void OneTime() {
+		timer += System.currentTimeMillis() - lastTime;
+		lastTime = System.currentTimeMillis();
+
+		if (timer > delay) {
+			animationIndex++;
+			timer = 0;
+			if (animationIndex >= frames.length)
+				animationIndex = 0;
+				return;
+		}
+	}
 
 	public BufferedImage getCurrentFrame() {
 		return frames[animationIndex];

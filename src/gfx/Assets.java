@@ -4,12 +4,13 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-	public static BufferedImage pacmans[][][], fruitSheet,fruits[],wall, ball, heart, ghosts[][][], ghostSheet, pacmanSheet,pacDiedSheet, pacDied[];
+	public static BufferedImage pacmans[][][], fruitSheet,fruits[],wall, bigCoin, ball, heart, sheetEatGhost,eatGhost[], ghosts[][][], ghostSheet, pacmanSheet,pacDiedSheet, pacDied[];
 
 	public static void init() {
 		//pacman = ImageUtils.loadImage("pacman.png");
 		wall = ImageUtils.loadImage("wall.png");
 		ball = ImageUtils.loadImage("coin.png");
+		bigCoin = ImageUtils.loadImage("bigCoin.png");
 		heart = ImageUtils.loadImage("heart.png");
 		
 		fruitSheet = ImageUtils.loadImage("fruits.png");
@@ -26,6 +27,10 @@ public class Assets {
 				for (int f = 0; f < 2; f++)
 					ghosts[g][m][f] = ImageUtils.crop(ghostSheet,  (20 * f) + (40 * m), g*20, 16, 16);
 		
+		eatGhost = new BufferedImage[4];
+		sheetEatGhost = ImageUtils.loadImage("eatGhost.png");
+		for (int f = 0; f < 4; f++)
+			eatGhost[f] = ImageUtils.crop(sheetEatGhost, 20 * f, 0 , 16, 16);
 		
 		pacmans = new BufferedImage[2][4][3];
 		pacmanSheet = ImageUtils.loadImage("pacman.png");

@@ -61,8 +61,7 @@ public class Player extends Entity {
 		if(invulnerableTime > 0)
 			return;
 		health--;
-		if(health>0)
-			resetPos();
+		resetPos();
 	}
 	
 	/**
@@ -88,7 +87,7 @@ public class Player extends Entity {
 		animDw.tick();
 		animLf.tick();
 		animRg.tick();
-		animDied.tick();
+		animDied.OneTime();
 		
 		// Se siamo invulnerabili decrementa di uno
 		if(invulnerableTime > 0)
@@ -110,7 +109,7 @@ public class Player extends Entity {
 		
 	}
 	
-	
+
 
 	private BufferedImage getCurrentAnimationFrame() {
 		if(health>0) {
