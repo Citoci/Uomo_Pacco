@@ -62,7 +62,7 @@ public class Ghost extends Entity {
 	}
 
 	private BufferedImage getCurrentAnimationFrame() {
-		if(!eatMe) {
+		if(eatMe) {
 			if (xMove < 0 && !xBlock)
 				return animLf.getCurrentFrame();
 			else if (xMove > 0 && !xBlock)

@@ -41,9 +41,9 @@ public class Client {
 		KeysPacket kP = new KeysPacket(keyManager.up, keyManager.down, keyManager.left, keyManager.right); // Cotruisce il pacchetto da inviare in base all'input da tastiera
 		out.write(kP.getByte()); // invia il pacchetto
 
-		// riceve la risposta
-		health = in.readByte();
-		points = in.readByte();
+//		// riceve la risposta
+//		health = in.readByte();
+//		points = in.readByte();
 		
 		// Se siamo morti dobbiamo essere cancellati
 		if(health == 0)

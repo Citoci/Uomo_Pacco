@@ -40,7 +40,7 @@ public class User {
 		
 		// invia risposta con vita e punti del player
 		out.writeByte(player.getHealth()); 
-		out.writeByte(player.getPoints());
+		//out.writeByte(player.getPoints());
 	}
 	
 	public void close() {

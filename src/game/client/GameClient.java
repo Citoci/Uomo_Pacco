@@ -1,5 +1,6 @@
 package game.client;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
@@ -54,8 +55,10 @@ public class GameClient extends Game {
 		Graphics g = bs.getDrawGraphics();
 
 		// Pulisce lo schermo
+		g.setColor(Color.white);
 		g.fillRect(0, 0, display.getWidth(), display.getHeight());
-
+		
+		g.setColor(Color.black);
 		// Renderizza 
 		for(int i=0; i<client.getHealth(); i++) 
 			g.drawImage(Assets.heart, display.getWidth()-(i+1)*74, 10, 64, 64, null);
