@@ -42,12 +42,15 @@ public class Client {
 		out.write(kP.getByte()); // invia il pacchetto
 
 //		// riceve la risposta
-//		health = in.readByte();
-//		points = in.readByte();
+		health = in.readByte();
+		points = in.readByte();
 		
 		// Se siamo morti dobbiamo essere cancellati
-		if(health == 0)
+		if(health == 0) {
+			JOptionPane.showMessageDialog(null, "ciaoo");
 			throw new IOException();
+			
+		}
 	}
 
 	public void close() throws IOException {

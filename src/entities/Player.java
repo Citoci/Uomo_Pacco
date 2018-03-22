@@ -67,8 +67,8 @@ public class Player extends Entity {
 	/**
 	 * Assegna un punto al giocatore
 	 */
-	public void makePoint() {
-		points++;
+	public void makePoint(int pointsToMake) {
+		points+=pointsToMake;
 	}
 	
 	/**
@@ -87,7 +87,7 @@ public class Player extends Entity {
 		animDw.tick();
 		animLf.tick();
 		animRg.tick();
-		animDied.OneTime();
+		animDied.tick();
 		
 		// Se siamo invulnerabili decrementa di uno
 		if(invulnerableTime > 0)
@@ -109,8 +109,6 @@ public class Player extends Entity {
 		
 	}
 	
-
-
 	private BufferedImage getCurrentAnimationFrame() {
 		if(health>0) {
 			if (xMove < 0 && !xBlock)
@@ -123,10 +121,8 @@ public class Player extends Entity {
 				return animDw.getCurrentFrame();
 			else
 				return stopPos;
-		}
-		else {
+		} else 
 			return animDied.getCurrentFrame();
-		}
 	}
 	
 	public int getId() { return id; }

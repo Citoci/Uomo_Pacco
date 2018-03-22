@@ -40,16 +40,20 @@ public class User {
 		
 		// invia risposta con vita e punti del player
 		out.writeByte(player.getHealth()); 
-		//out.writeByte(player.getPoints());
+		out.writeByte(player.getPoints());
 	}
 	
 	public void close() {
+		player.setHealth(0);
 		try {
 			socket.close();
 			in.close();
 			out.close();
 		} catch (IOException e) { e.printStackTrace(); }	
-		player.setHealth(0);
+	}
+	
+	public boolean isAlive() {
+		return player.isAlive();
 	}
 
 }

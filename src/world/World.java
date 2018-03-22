@@ -1,6 +1,5 @@
 package world;
 
-import java.awt.Font;
 import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -15,7 +14,6 @@ import game.server.GameServer;
 
 public class World {	
 	private GameServer game;
-	private Graphics g;
 
 	private int width, height, maxNumPlayers, xPlayerSpawn, yPlayerSpawn, numGhosts, xGhostSpawn[], yGhostSpawn[];
 	private int[][] map;
@@ -66,15 +64,22 @@ public class World {
 	}
 
 	public void tick() {
+		if(entities.getNumPlayers()==0)
+			return;		
 		entities.tick(map);
 
 		if (checkWin()) {
 			JOptionPane.showMessageDialog(null, "VITTORIA!!");
 			game.stop();
 		}
-		if (entities.getNumPlayers() == 0) {
-//			JOptionPane.showMessageDialog(null, "SCONFITTA!! :(");
-//			game.stop();
+		
+		boolean lost = true;
+		for(Player p: entities.getPlayers()) 
+			if(p.isAlive())
+				lost = false;
+		if(lost) {
+			JOptionPane.showMessageDialog(null, "SCONFITTA!! :(");
+			game.stop();
 		}
 	}
 

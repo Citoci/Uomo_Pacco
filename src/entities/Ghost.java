@@ -10,8 +10,11 @@ import gfx.Assets;
 
 public class Ghost extends Entity {
 	
-	private boolean eatMe = true;
-	private Animation eat;
+	private int eatableTime = 0;
+	private boolean eaten = false;
+	private Animation animEatable;
+	
+	
 	public Ghost(GameServer game, int xPos, int yPos, int c) {
 		super(game, xPos, yPos);
 
@@ -21,7 +24,7 @@ public class Ghost extends Entity {
 		animLf = new Animation(Assets.ghosts[c][2]);
 		animRg = new Animation(Assets.ghosts[c][3]);
 		
-		eat = new Animation(Assets.eatGhost); //modifica nome
+		animEatable = new Animation(Assets.eatGhost); //modifica nome
 	}
 
 	long last, now;
@@ -29,13 +32,18 @@ public class Ghost extends Entity {
 
 	@Override
 	public void tick() {
+		if(eaten)
+			return;
 
 		// Animation tick
 		animUp.tick();
 		animDw.tick();
 		animLf.tick();
 		animRg.tick();
-		eat.tick();
+		animEatable.tick();
+		
+		if(eatableTime > 0)
+			eatableTime--;
 
 		now = System.nanoTime();
 		delta += (now - last);
@@ -58,11 +66,12 @@ public class Ghost extends Entity {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(getCurrentAnimationFrame(), xPos, yPos, DEFAULT_SIZE, DEFAULT_SIZE, null);
+		if(!eaten)
+			g.drawImage(getCurrentAnimationFrame(), xPos, yPos, DEFAULT_SIZE, DEFAULT_SIZE, null);
 	}
 
 	private BufferedImage getCurrentAnimationFrame() {
-		if(eatMe) {
+		if(eatableTime==0) {
 			if (xMove < 0 && !xBlock)
 				return animLf.getCurrentFrame();
 			else if (xMove > 0 && !xBlock)
@@ -73,15 +82,13 @@ public class Ghost extends Entity {
 				return animDw.getCurrentFrame();
 		}
 		else 
-			return eat.getCurrentFrame();
+			return animEatable.getCurrentFrame();
 	}
 	
-	public void setEatMe(boolean boole) {
-		this.eatMe = boole;
-	}
+	public void setEatableTime(int time) { this.eatableTime = time; }		
+	public boolean isEatable() { return eatableTime>0; }
+	public void eat() { this.eaten = true; }
+	public boolean isEaten() { return eaten; }
 	
-	public boolean getEatMe() {
-		return eatMe;
-	}
 
 }

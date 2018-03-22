@@ -1,6 +1,7 @@
 package game.client;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
@@ -62,7 +63,8 @@ public class GameClient extends Game {
 		// Renderizza 
 		for(int i=0; i<client.getHealth(); i++) 
 			g.drawImage(Assets.heart, display.getWidth()-(i+1)*74, 10, 64, 64, null);
-		g.drawString("Punti Totali: "+client.getPoints(), 10, 50);
+		g.setFont(new Font ("Arial", 1, 24)); 
+		g.drawString("Punti Totali: "+client.getPoints()*100, 10, 50);
 
 		// Visualizza
 		bs.show();

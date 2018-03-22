@@ -1,8 +1,5 @@
 package world;
 
-import java.awt.image.BufferedImage;
-import java.util.Random;
-
 import gfx.Assets;
 
 /**
@@ -34,10 +31,7 @@ public class Tiles {
 		public BIgCoinTile(int id) { super(id, Assets.bigCoin); } 
 	}
 	
-	// Tile frutto
-	
-	
-	
+	// Tile frutta
 	public static class AppleTile extends Tile {
 		public AppleTile(int id) { super(id, Assets.fruits[3]); }
 	}
