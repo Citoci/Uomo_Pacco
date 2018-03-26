@@ -59,14 +59,7 @@ public abstract class Game implements Runnable{
 	public synchronized void stop() {
 		if (!running)
 			return;
-		running = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		running = false;		
 		gameThread.interrupt();
 		System.exit(0);
 	}

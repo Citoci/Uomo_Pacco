@@ -7,7 +7,7 @@ import java.net.Socket;
 
 import entities.Player;
 import game.server.GameServer;
-import net.Packets.KeysPacket;
+import net.Packets.*;
 
 // Classe usata dal server per comunicare con un client
 public class User {
@@ -39,8 +39,8 @@ public class User {
 		player.getInput(kP.up(), kP.down(), kP.left(), kP.right()); // da l'input al player
 		
 		// invia risposta con vita e punti del player
-		out.writeByte(player.getHealth()); 
-		out.writeByte(player.getPoints());
+		HPPacket hpP = new HPPacket((byte)player.getHealth(), (byte)player.getPoints());
+		out.writeByte(hpP.getByte());
 	}
 	
 	public void close() {

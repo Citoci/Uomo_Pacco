@@ -9,7 +9,7 @@ import java.net.UnknownHostException;
 import javax.swing.JOptionPane;
 
 import input.KeyManager;
-import net.Packets.KeysPacket;
+import net.Packets.*;
 
 
 // Classe usata dal client per la comunicazione 
@@ -42,8 +42,9 @@ public class Client {
 		out.write(kP.getByte()); // invia il pacchetto
 
 //		// riceve la risposta
-		health = in.readByte();
-		points = in.readByte();
+		HPPacket hpP = new HPPacket(in.readByte());
+		health = hpP.getHealth();
+		points = hpP.getPoints();
 		
 		// Se siamo morti dobbiamo essere cancellati
 		if(health == 0) {
