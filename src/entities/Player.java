@@ -7,11 +7,12 @@ import java.awt.image.BufferedImage;
 
 import game.server.GameServer;
 import gfx.Animation;
+import gfx.AnimationDied;
 import gfx.Assets;
 
 public class Player extends Entity {
 
-	public static int DEFAULT_HEALTH = 3;
+	public static int DEFAULT_HEALTH = 1;
 
 	private String name;
 	private int id, health, points, invulnerableTime;
@@ -33,7 +34,7 @@ public class Player extends Entity {
 		animUp = new Animation(Assets.pacmans[id][2]);
 		animDw = new Animation(Assets.pacmans[id][3]);
 		
-		animDied = new Animation(Assets.pacDied);
+		animDied = new AnimationDied(Assets.pacDied);
 		
 		stopPos = Assets.pacmans[id][0][2];
 	}
@@ -61,7 +62,8 @@ public class Player extends Entity {
 		if(invulnerableTime > 0)
 			return;
 		health--;
-		resetPos();
+		if(health>0)
+			resetPos();
 	}
 	
 	/**
@@ -87,14 +89,17 @@ public class Player extends Entity {
 		animDw.tick();
 		animLf.tick();
 		animRg.tick();
-		animDied.tick();
+		
+		if(health==0)
+			animDied.tick();
 		
 		// Se siamo invulnerabili decrementa di uno
 		if(invulnerableTime > 0)
 			invulnerableTime --;
 		
 		// Muove il giocatore
-		move();
+		if(health!=0)
+			move();
 	}
 
 	@Override
@@ -102,9 +107,11 @@ public class Player extends Entity {
 		
 		if(invulnerableTime/15%2 == 0 ) {
 			g.drawImage(getCurrentAnimationFrame(), xPos, yPos, DEFAULT_SIZE, DEFAULT_SIZE, null);
-			g.setFont(new Font ("Arial", 1, 15)); 
-			g.setColor(Color.WHITE);
-			g.drawString(name, xPos, yPos - 5); // Nome del giocatore
+			if(health>0) {
+				g.setFont(new Font ("Arial", 1, 15)); 
+				g.setColor(Color.WHITE);
+				g.drawString(name, xPos, yPos - 5); // Nome del giocatore
+			}
 		}
 		
 	}

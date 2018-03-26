@@ -6,9 +6,9 @@ public class Animation {
 
 	public static final int DEFAULT_DELAY = 200; 
 
-	private int delay, animationIndex;
-	private long lastTime, timer;
-	private BufferedImage[] frames;
+	protected int delay, animationIndex;
+	protected long lastTime, timer;
+	protected BufferedImage[] frames;
 
 	public Animation(BufferedImage[] frames) {
 		this.delay = DEFAULT_DELAY;
@@ -30,12 +30,13 @@ public class Animation {
 		if (timer > delay) {
 			animationIndex++;
 			timer = 0;
-			if (animationIndex >= frames.length)
-				animationIndex = 0;
+			animationIndex %= frames.length;
 		}
 	}
 
 	public BufferedImage getCurrentFrame() {
+		if(animationIndex >= frames.length)
+			return null;
 		return frames[animationIndex];
 	}
 

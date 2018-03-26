@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 
 import game.server.GameServer;
 import gfx.Animation;
+import gfx.AnimationDied;
 import world.Tile;
 
 public abstract class Entity {
@@ -19,7 +20,8 @@ public abstract class Entity {
 	protected boolean xBlock, yBlock;
 	
 	// Animations
-	protected Animation animUp, animDw, animLf, animRg, animDied;
+	protected Animation animUp, animDw, animLf, animRg;
+	protected AnimationDied animDied;
 
 	public Entity(GameServer game, int xSpawn, int ySpawn) {
 		this.game = game;

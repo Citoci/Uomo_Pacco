@@ -64,7 +64,7 @@ public class World {
 	}
 
 	public void tick() {
-		if(entities.getNumPlayers()==0)
+		if(entities.getNumPlayers()<1)
 			return;		
 		entities.tick(map);
 

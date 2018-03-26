@@ -60,6 +60,12 @@ public abstract class Game implements Runnable{
 		if (!running)
 			return;
 		running = false;
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		gameThread.interrupt();
 		System.exit(0);
