@@ -137,5 +137,9 @@ public class Player extends Entity {
 	public int getHealth() { return health; }
 	public boolean isAlive() { return health>0; }
 	
-	public void setHealth(int health) { this.health = health; }	
+	public void setHealth(int health) { this.health = health; }
+
+	public String getName() {
+		return name;
+	}	
 }

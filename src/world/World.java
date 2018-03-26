@@ -69,7 +69,8 @@ public class World {
 		entities.tick(map);
 
 		if (checkWin()) {
-			JOptionPane.showMessageDialog(null, "VITTORIA!!");
+//			JOptionPane.showMessageDialog(null, "VITTORIA!!");
+			game.printStatus("WIN!", entities.getNumPlayers(), entities.getPlayers());
 			game.stop();
 		}
 		
@@ -78,7 +79,8 @@ public class World {
 			if(p.isAlive())
 				lost = false;
 		if(lost) {
-			JOptionPane.showMessageDialog(null, "SCONFITTA!! :(");
+//			JOptionPane.showMessageDialog(null, "SCONFITTA!! :(");
+			game.printStatus("GAME OVER", entities.getNumPlayers(), entities.getPlayers());
 			game.stop();
 		}
 	}
