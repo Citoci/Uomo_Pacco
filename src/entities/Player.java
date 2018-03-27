@@ -12,7 +12,7 @@ import gfx.Assets;
 
 public class Player extends Entity {
 
-	public static int DEFAULT_HEALTH = 1;
+	public static int DEFAULT_HEALTH =3;
 
 	private String name;
 	private int id, health, points, invulnerableTime;
@@ -108,7 +108,7 @@ public class Player extends Entity {
 		if(invulnerableTime/15%2 == 0 ) {
 			g.drawImage(getCurrentAnimationFrame(), xPos, yPos, DEFAULT_SIZE, DEFAULT_SIZE, null);
 			if(health>0) {
-				g.setFont(new Font ("Arial", 1, 15)); 
+				g.setFont(new Font ("Game Over", 1, 50)); 
 				g.setColor(Color.WHITE);
 				g.drawString(name, xPos, yPos - 5); // Nome del giocatore
 			}

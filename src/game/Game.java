@@ -8,7 +8,7 @@ public abstract class Game implements Runnable{
 
 	// Config
 	private boolean running;
-	public final int FPS = 60;
+	public final int FPS = 70;
 	public final double ZOOM = 0.6;
 
 	// Thread
@@ -63,7 +63,8 @@ public abstract class Game implements Runnable{
 		
 		gameThread.interrupt();
 		//System.exit(0);
-	}
+		
+}
 
 
 	// Getters

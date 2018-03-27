@@ -63,7 +63,7 @@ public class GameClient extends Game {
 		// Renderizza 
 		for(int i=0; i<client.getHealth(); i++) 
 			g.drawImage(Assets.heart, display.getWidth()-(i+1)*74, 10, 64, 64, null);
-		g.setFont(new Font ("Arial", 1, 24)); 
+		g.setFont(new Font ("Game Over", 1, 50)); 
 		g.drawString("Punti Totali: "+client.getPoints()*100, 10, 50);
 
 		// Visualizza

@@ -49,8 +49,10 @@ public class EntityManager {
 				if (p.getCollisionBounds().intersects(g.getCollisionBounds())) 
 					if(!g.isEatable() && !g.isEaten())
 						p.hurt();
-					else
+					else {
 						g.eat();
+						p.makePoint(1);
+					}
 				
 		}
 		for (Ghost g : ghosts)

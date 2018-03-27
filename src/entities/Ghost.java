@@ -10,8 +10,8 @@ import gfx.Assets;
 
 public class Ghost extends Entity {
 	
-	private int eatableTime = 0;
-	private boolean eaten = false;
+	private int eatableTime = 0, deadTime=0;
+
 	private Animation animEatable;
 	
 	
@@ -32,8 +32,10 @@ public class Ghost extends Entity {
 
 	@Override
 	public void tick() {
-		if(eaten)
+		if(deadTime>0) {
+			deadTime--;
 			return;
+		}
 
 		// Animation tick
 		animUp.tick();
@@ -44,7 +46,7 @@ public class Ghost extends Entity {
 		
 		if(eatableTime > 0)
 			eatableTime--;
-
+		
 		now = System.nanoTime();
 		delta += (now - last);
 		last = now;
@@ -66,7 +68,7 @@ public class Ghost extends Entity {
 
 	@Override
 	public void render(Graphics g) {
-		if(!eaten)
+		if(deadTime==0)
 			g.drawImage(getCurrentAnimationFrame(), xPos, yPos, DEFAULT_SIZE, DEFAULT_SIZE, null);
 	}
 
@@ -87,8 +89,12 @@ public class Ghost extends Entity {
 	
 	public void setEatableTime(int time) { this.eatableTime = time; }		
 	public boolean isEatable() { return eatableTime>0; }
-	public void eat() { this.eaten = true; }
-	public boolean isEaten() { return eaten; }
+	public void eat() { 
+		resetPos();
+		this.eatableTime=0;
+		this.deadTime = 300;
+		}
+	public boolean isEaten() { return deadTime>0; }
 	
 
 }
