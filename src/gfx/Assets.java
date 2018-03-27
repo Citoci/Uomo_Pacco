@@ -32,13 +32,22 @@ public class Assets {
 		for (int f = 0; f < 4; f++)
 			eatGhost[f] = ImageUtils.crop(sheetEatGhost, 20 * f, 0 , 16, 16);
 		
-		pacmans = new BufferedImage[2][4][3];
+		pacmans = new BufferedImage[4][4][3];
 		pacmanSheet = ImageUtils.loadImage("pacman.png");
 		
-		for(int p=0; p<2; p++) {
-			for(int m=0; m<4; m++) 
-				for(int f=0; f<3; f++)
-					pacmans[p][m][f] = ImageUtils.crop(pacmanSheet, (20*f)+(60*m), p*16, 14+p, 14+p);
+		
+		for(int p=0; p<4; p++) {
+			for(int m=0; m<4; m++) {
+				for(int f=0; f<3; f++) {
+					if(p==1 || p==3) {
+						pacmans[p][m][f] = ImageUtils.crop(pacmanSheet, (20*f)+(60*m), p*16, 14+1, 14+1);
+					}
+					else {
+						pacmans[p][m][f] = ImageUtils.crop(pacmanSheet, (20*f)+(60*m), p*16, 14, 14);	
+					}
+				}
+			}
+			
 			//il +p è temporaneo, causa dimensioni diverse pacman
 					
 		}

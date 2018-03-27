@@ -25,7 +25,7 @@ public class GameServer extends Game {
 
 	// Mondo
 	private World world;
-	private final String worldPath = "res/worlds/world2.txt";
+	private final String worldPath = "res/worlds/world3.txt";
 
 	public GameServer(String title) {
 		super(title);
