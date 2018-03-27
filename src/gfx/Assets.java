@@ -39,12 +39,8 @@ public class Assets {
 		for(int p=0; p<4; p++) {
 			for(int m=0; m<4; m++) {
 				for(int f=0; f<3; f++) {
-					if(p==1 || p==3) {
-						pacmans[p][m][f] = ImageUtils.crop(pacmanSheet, (20*f)+(60*m), p*16, 14+1, 14+1);
-					}
-					else {
-						pacmans[p][m][f] = ImageUtils.crop(pacmanSheet, (20*f)+(60*m), p*16, 14, 14);	
-					}
+					
+						pacmans[p][m][f] = ImageUtils.crop(pacmanSheet, (20*f)+(60*m), p*16, 14+p, 14+p);
 				}
 			}
 			
