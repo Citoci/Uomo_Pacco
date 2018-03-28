@@ -35,6 +35,8 @@ public class User {
 	}
 	
 	public void tick() throws IOException {
+		if(!isAlive())
+			close();
 		KeysPacket kP = new KeysPacket(in.readByte()); // legge il pacchetto del giocatore
 		player.getInput(kP.up(), kP.down(), kP.left(), kP.right()); // da l'input al player
 		

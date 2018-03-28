@@ -42,6 +42,7 @@ public class GameClient extends Game {
 			client.tick();
 		} catch (IOException e) { 
 			e.printStackTrace();
+			client.setHealth((byte)0); 
 			stop();
 		}
 	}

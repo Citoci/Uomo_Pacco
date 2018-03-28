@@ -34,7 +34,7 @@ public class Server implements Runnable{
 
 	public void tick() {
 		for(int i=0; i<users.length; i++) { // cicla tutti gli users
-			if(users[i] != null && users[i].isAlive()) // non nulli
+			if(users[i] != null) // non nulli
 				try {
 					users[i].tick(); // li ticka
 				} catch (IOException e) { // se c'è eccezione chiude l'user

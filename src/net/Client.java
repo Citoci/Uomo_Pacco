@@ -47,11 +47,8 @@ public class Client {
 		points = hpP.getPoints();
 		
 		// Se siamo morti dobbiamo essere cancellati
-		if(health == 0) {
-			JOptionPane.showMessageDialog(null, "ciaoo");
+		if(health == 0) 
 			throw new IOException();
-			
-		}
 	}
 
 	public void close() throws IOException {
@@ -62,5 +59,7 @@ public class Client {
 	
 	public byte getHealth() { return health; }
 	public byte getPoints() { return points; }
+	
+	public void setHealth(byte health) { this.health = health; }
 
 }

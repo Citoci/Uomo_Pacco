@@ -105,8 +105,7 @@ public class GameServer extends Game {
 			g.drawString(players.get(i).getName()+"................", display.getWidth()/2-100, display.getHeight()/2+i*40);
 			
 			int point = players.get(i).getPoints()*100;
-			String pointS = ""+point;
-			g.drawString(players.get(i).getName()+"................"+pointS, display.getWidth()/2-100, display.getHeight()/2+i*40);
+			g.drawString(players.get(i).getName()+"................"+point, display.getWidth()/2-100, display.getHeight()/2+i*40);
 			
 //			g.drawString(pointS, display.getWidth()/2+80, display.getHeight()/2+i*40);
 		}
