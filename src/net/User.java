@@ -12,9 +12,9 @@ import net.Packets.*;
 // Classe usata dal server per comunicare con un client
 public class User {
 	
-	private GameServer game;
-	
-	private int id;
+//	private GameServer game;
+//	
+//	private int id;
 	
 	private Socket socket;
 	private DataInputStream in;
@@ -23,8 +23,8 @@ public class User {
 	private Player player; // riferimento al suo player 
 
 	public User(GameServer game, int id, Socket socket) throws IOException {
-		this.game = game;
-		this.id = id;
+//		this.game = game;
+//		this.id = id;
 		
 		this.socket = socket;
 		in = new DataInputStream(socket.getInputStream());

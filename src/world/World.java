@@ -5,8 +5,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import javax.swing.JOptionPane;
-
 import entities.EntityManager;
 import entities.Ghost;
 import entities.Player;
