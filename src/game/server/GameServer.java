@@ -62,7 +62,7 @@ public class GameServer extends Game {
 
 	public void render() {
 		if(!isRunning()) 
-			return;
+			;//return;
 		BufferStrategy bs = display.getCanvas().getBufferStrategy();
 		if (bs == null) {
 			display.getCanvas().createBufferStrategy(3);
