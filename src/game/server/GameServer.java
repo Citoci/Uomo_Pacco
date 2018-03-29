@@ -75,7 +75,13 @@ public class GameServer extends Game {
 		g.fillRect(0, 0, display.getWidth(), display.getHeight());
 
 		// Renderizza 
-		world.render(g);
+		if(world.getEntities().getNumPlayers() == 0) {
+			g.fillRect(0, 0, display.getWidth(), display.getHeight());
+			g.setFont(new Font ("Game Over", 1, 100)); 
+			g.setColor(Color.WHITE);
+			g.drawString("READY?", display.getWidth()/2-90, display.getHeight()/2-20);
+		} else 
+			world.render(g);
 
 		// Visualizza
 		bs.show();
@@ -102,7 +108,6 @@ public class GameServer extends Game {
 		g.drawString(status, display.getWidth()/2-80, display.getHeight()/3);
 		
 		for(int i=0; i<Nplayer; i++) {
-			
 			int point = players.get(i).getPoints()*100;
 			g.drawString(players.get(i).getName()+"................"+point, display.getWidth()/2-100, display.getHeight()/2+i*40);
 			

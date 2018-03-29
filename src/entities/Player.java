@@ -12,7 +12,7 @@ import gfx.Assets;
 
 public class Player extends Entity {
 
-	public static int DEFAULT_HEALTH =1;
+	public static int DEFAULT_HEALTH =3;
 
 	private String name;
 	private int id, health, points, invulnerableTime;
